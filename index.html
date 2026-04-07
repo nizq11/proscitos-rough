@@ -1,30 +1,123 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proscitos</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #0f172a;
+  color: white;
+}
+
+/* NAV */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 30px;
+  background: #020617;
+}
+
+.logo { font-weight: bold; font-size: 18px; }
+
+.mode-btn {
+  padding: 6px 12px;
+  margin-left: 5px;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+}
+
+.active {
+  background: #38bdf8;
+  color: black;
+}
+
+/* PAGES */
+.page { display: none; padding: 40px; }
+.page.active { display: block; }
+
+/* CARDS */
+.card {
+  background: #020617;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+</style>
+</head>
+
 <body>
 
-<h1>Test Mode Switch</h1>
+<!-- NAV -->
+<div class="nav">
+  <div class="logo">Proscitos</div>
+  <div>
+    <button class="mode-btn active" id="mp" onclick="setMode('pro')">Pro</button>
+    <button class="mode-btn" id="ms" onclick="setMode('saral')">Saral</button>
+  </div>
+</div>
 
-<button onclick="setMode('pro')">Pro</button>
-<button onclick="setMode('saral')">Saral</button>
+<!-- HOME PAGE -->
+<div class="page active" id="page-home">
 
-<div id="pro-home">PRO VIEW</div>
-<div id="saral-home" style="display:none;">SARAL VIEW</div>
+  <!-- PRO VIEW -->
+  <div id="pro-home">
+    <div class="card">
+      <h2>Pro Mode</h2>
+      <p>Detailed portfolio, analytics, charts.</p>
+    </div>
+  </div>
+
+  <!-- SARAL VIEW -->
+  <div id="saral-home" style="display:none;">
+    <div class="card">
+      <h2>Saral Mode</h2>
+      <p>Simple UI, beginner friendly investing.</p>
+    </div>
+  </div>
+
+</div>
 
 <script>
-function setMode(mode) {
-  alert("Clicked: " + mode);
 
-  let pro = document.getElementById("pro-home");
-  let saral = document.getElementById("saral-home");
+// MODE SWITCH (bulletproof)
+function setMode(mode) {
+  const pro = document.getElementById("pro-home");
+  const saral = document.getElementById("saral-home");
+
+  const mp = document.getElementById("mp");
+  const ms = document.getElementById("ms");
+
+  if (!pro || !saral) {
+    alert("Error: IDs missing");
+    return;
+  }
 
   if (mode === "pro") {
     pro.style.display = "block";
     saral.style.display = "none";
+
+    mp.classList.add("active");
+    ms.classList.remove("active");
+
   } else {
     pro.style.display = "none";
     saral.style.display = "block";
+
+    ms.classList.add("active");
+    mp.classList.remove("active");
   }
 }
+
+// ensure default works
+window.onload = function() {
+  setMode("pro");
+};
+
 </script>
 
 </body>
