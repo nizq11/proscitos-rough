@@ -3,1192 +3,1027 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FractoVest – Invest in India's Best</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>Proscitos</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+Devanagari:wght@400;600;700&family=Noto+Sans+Bengali:wght@400;600;700&family=Noto+Sans+Tamil:wght@400;600;700&family=Noto+Sans+Telugu:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #F4F6FB;
-    --card: #FFFFFF;
-    --primary: #1A6B4A;
-    --primary-light: #E8F5EF;
-    --accent: #F6C744;
-    --accent2: #FF6B6B;
-    --text: #1C2B3A;
-    --muted: #7A8B99;
-    --border: #E2E8F0;
-    --green: #22C55E;
-    --red: #EF4444;
-    --nav-h: 64px;
-    --radius: 18px;
-  }
+:root{
+  --bg:#0D1117;--sf:#161B27;--sf2:#1C2333;--sf3:#243047;
+  --bd:#2D3748;--bd2:#3D4F6B;
+  --pr:#4F8EF7;--prd:rgba(79,142,247,.13);
+  --gn:#0ECB81;--gnd:rgba(14,203,129,.12);
+  --rd:#F6465D;--rdd:rgba(246,70,93,.12);
+  --gd:#F0B90B;--gdd:rgba(240,185,11,.12);
+  --tx:#EAECF0;--tx2:#8B9EC7;--tx3:#4A5878;
+  --r:10px;--rl:16px;--nh:56px;
+}
+[data-mode=saral]{
+  --bg:#F7F8FA;--sf:#FFFFFF;--sf2:#F0F4FF;--sf3:#E8EEFF;
+  --bd:#D8E0F0;--bd2:#BBC8E8;
+  --pr:#2962FF;--prd:rgba(41,98,255,.08);
+  --gn:#00897B;--gnd:rgba(0,137,123,.1);
+  --rd:#D32F2F;--rdd:rgba(211,47,47,.1);
+  --tx:#0D1117;--tx2:#4A5878;--tx3:#8B9EC7;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;transition:background .35s,color .35s;-webkit-font-smoothing:antialiased}
 
-  * { margin:0; padding:0; box-sizing:border-box; }
+/* ── NAV ─────────────────────────────── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:600;height:var(--nh);background:var(--sf);border-bottom:1px solid var(--bd);display:flex;align-items:center;padding:0 16px;gap:12px;transition:background .35s,border-color .35s}
+.logo{font-weight:700;font-size:17px;display:flex;align-items:center;gap:7px;white-space:nowrap;letter-spacing:-.3px}
+.logo-mark{width:26px;height:26px;background:var(--pr);border-radius:7px;display:flex;align-items:center;justify-content:center}
+.logo-mark svg{width:14px;height:14px;fill:#fff}
+.nav-center{display:flex;gap:2px;flex:1;justify-content:center}
+.ntab{padding:5px 13px;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;border:none;background:transparent;color:var(--tx2);transition:all .16s;white-space:nowrap;font-family:'DM Sans',sans-serif}
+.ntab:hover{color:var(--tx);background:var(--sf2)}
+.ntab.active{color:var(--pr);background:var(--prd)}
+.nav-right{display:flex;align-items:center;gap:8px;margin-left:auto}
+/* Mode pill */
+.mpill{display:flex;border-radius:20px;border:1px solid var(--bd);background:var(--sf2);overflow:hidden;flex-shrink:0}
+.mopt{padding:4px 11px;font-size:12px;font-weight:700;cursor:pointer;color:var(--tx2);border:none;background:transparent;font-family:'DM Sans',sans-serif;transition:all .18s}
+.mopt.active{background:var(--pr);color:#fff;border-radius:20px}
+/* Lang dropdown */
+.lang-wrap{position:relative}
+.lang-btn{padding:4px 10px;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;border:1px solid var(--bd);background:var(--sf2);color:var(--tx2);transition:all .2s;font-family:'DM Sans',sans-serif;display:flex;align-items:center;gap:5px}
+.lang-btn:hover{border-color:var(--pr);color:var(--tx)}
+.lang-dd{display:none;position:absolute;top:calc(100% + 6px);right:0;background:var(--sf);border:1px solid var(--bd);border-radius:var(--rl);padding:6px;min-width:180px;z-index:700;box-shadow:0 8px 32px rgba(0,0,0,.35)}
+.lang-dd.open{display:block}
+.lang-opt{padding:8px 12px;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:10px;transition:background .14s}
+.lang-opt:hover{background:var(--sf2)}
+.lang-opt.active{background:var(--prd);color:var(--pr)}
+.lang-native{font-size:14px;font-weight:700}
+.lang-en{font-size:11px;color:var(--tx2)}
+/* Wallet & avatar */
+.wallet{font-size:12px;font-weight:700;color:var(--gn);background:var(--gnd);padding:4px 10px;border-radius:7px;white-space:nowrap}
+.avatar{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--pr),#8B5CF6);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#fff;cursor:pointer;flex-shrink:0}
 
-  body {
-    font-family: 'Nunito', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+/* ── TICKER ──────────────────────────── */
+.ticker{background:var(--sf);border-bottom:1px solid var(--bd);padding:6px 16px;display:flex;gap:22px;overflow-x:auto;scrollbar-width:none;position:fixed;top:var(--nh);left:0;right:0;z-index:500;transition:background .35s;align-items:center}
+.ticker::-webkit-scrollbar{display:none}
+.ti{display:flex;align-items:center;gap:6px;white-space:nowrap}
+.tn{font-size:11px;font-weight:600;color:var(--tx2)}
+.tv{font-size:12px;font-weight:700;color:var(--tx)}
+.tc{font-size:10px;font-weight:700;padding:1px 5px;border-radius:3px}
+.up{color:var(--gn);background:var(--gnd)}.dn{color:var(--rd);background:var(--rdd)}
 
-  /* ── NAV ── */
-  .nav {
-    position: fixed; top:0; left:0; right:0; z-index:100;
-    height: var(--nav-h);
-    background: #fff;
-    border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 20px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-  }
-  .nav-logo { font-family:'Sora',sans-serif; font-weight:700; font-size:20px; color:var(--primary); display:flex; align-items:center; gap:8px; }
-  .nav-logo span { background:var(--primary); color:#fff; border-radius:8px; padding:2px 8px; font-size:13px; }
-  .nav-tabs { display:flex; gap:4px; }
-  .nav-tab {
-    padding: 7px 14px; border-radius:10px; font-size:13px; font-weight:700;
-    cursor:pointer; transition: all .2s; color:var(--muted); border:none; background:none;
-  }
-  .nav-tab.active { background:var(--primary-light); color:var(--primary); }
-  .nav-tab:hover:not(.active) { background:#f0f0f0; color:var(--text); }
-  .nav-right { display:flex; align-items:center; gap:10px; }
-  .nav-balance { font-size:13px; font-weight:800; color:var(--primary); background:var(--primary-light); padding:6px 12px; border-radius:10px; }
-  .nav-avatar { width:34px; height:34px; background:var(--accent); border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:13px; color:#1C2B3A; cursor:pointer; }
+/* ── PAGES ───────────────────────────── */
+.page{display:none;min-height:100vh;padding-bottom:40px}
+.page.active{display:block}
+#page-home.pro-mode{padding-top:calc(var(--nh) + 34px + 16px)}
+#page-home.saral-mode{padding-top:calc(var(--nh) + 16px)}
+#page-discover,#page-robo,#page-sparechange,#page-stock{padding-top:calc(var(--nh) + 16px)}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px}
 
-  /* ── PAGES ── */
-  .page { display:none; padding-top: calc(var(--nav-h) + 20px); padding-bottom:40px; min-height:100vh; }
-  .page.active { display:block; }
-  .container { max-width:960px; margin:0 auto; padding:0 20px; }
+/* ── ZERODHA-STYLE HOME (Pro) ────────── */
+/* Portfolio value block — minimal like Zerodha mobile */
+.pv-block{padding:20px 16px 14px;border-bottom:1px solid var(--bd)}
+.pv-label{font-size:11px;font-weight:600;color:var(--tx2);text-transform:uppercase;letter-spacing:.6px;margin-bottom:4px}
+.pv-amount{font-size:32px;font-weight:700;letter-spacing:-.5px;line-height:1.1}
+.pv-meta{display:flex;align-items:center;gap:10px;margin-top:5px}
+.pv-gain{font-size:13px;font-weight:700}
+.pv-invested{font-size:12px;color:var(--tx2);font-weight:500}
+/* Summary pills */
+.sum-row{display:flex;padding:10px 16px;gap:0;border-bottom:1px solid var(--bd)}
+.sum-item{flex:1;text-align:center}
+.sum-item+.sum-item{border-left:1px solid var(--bd)}
+.sum-val{font-size:14px;font-weight:700}
+.sum-lbl{font-size:10px;font-weight:600;color:var(--tx2);margin-top:2px;text-transform:uppercase;letter-spacing:.4px}
+/* Breakdown bar */
+.bdown-row{display:flex;align-items:center;padding:10px 16px;gap:12px;border-bottom:1px solid var(--bd);cursor:pointer;transition:background .14s}
+.bdown-row:hover{background:var(--sf2)}
+.bd-icon{font-size:18px;width:34px;height:34px;background:var(--sf2);border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.bd-info{flex:1}
+.bd-nm{font-size:13px;font-weight:600;color:var(--tx)}
+.bd-sub{font-size:11px;color:var(--tx2);font-weight:500;margin-top:1px}
+.bd-right{text-align:right}
+.bd-amt{font-size:14px;font-weight:700}
+.bd-ret{font-size:11px;font-weight:600;margin-top:1px}
+/* Holdings Zerodha-list */
+.holdings-header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px 6px}
+.hdr-title{font-size:12px;font-weight:700;color:var(--tx2);text-transform:uppercase;letter-spacing:.5px}
+.hdr-count{font-size:12px;font-weight:600;color:var(--tx2)}
+.h-row{display:flex;align-items:center;padding:12px 16px;border-bottom:1px solid var(--bd);cursor:pointer;transition:background .14s;gap:10px}
+.h-row:last-child{border-bottom:none}
+.h-row:hover{background:var(--sf2)}
+.h-logo{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0}
+.h-info{flex:1;min-width:0}
+.h-nm{font-size:14px;font-weight:600;color:var(--tx)}
+.h-sub{font-size:11px;color:var(--tx2);font-weight:500;margin-top:1px}
+.h-right{text-align:right;flex-shrink:0}
+.h-val{font-size:14px;font-weight:700}
+.h-ret{font-size:12px;font-weight:600;margin-top:2px}
+/* Spare change nudge */
+.sc-nudge{display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(240,185,11,.07);border-bottom:1px solid var(--bd);cursor:pointer;transition:background .15s}
+.sc-nudge:hover{background:rgba(240,185,11,.12)}
+.sc-nudge-icon{font-size:22px}
+.sc-nudge-info{flex:1}
+.sc-nudge-title{font-size:13px;font-weight:700;color:var(--gd)}
+.sc-nudge-sub{font-size:11px;color:var(--tx2);margin-top:1px;font-weight:500}
+.sc-nudge-btn{font-size:12px;font-weight:700;color:var(--gd);background:var(--gdd);padding:5px 10px;border-radius:7px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap}
+/* Section dividers */
+.sec-div{height:8px;background:var(--sf2);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd)}
+/* Today's gain banner */
+.today-bar{display:flex;justify-content:space-between;align-items:center;padding:8px 16px;border-bottom:1px solid var(--bd)}
+.today-item{text-align:center}
+.today-val{font-size:13px;font-weight:700}
+.today-lbl{font-size:10px;color:var(--tx2);font-weight:600;margin-top:1px}
+/* Quick actions */
+.qa-row{display:flex;gap:10px;padding:14px 16px}
+.qa-btn{flex:1;padding:10px;border-radius:var(--r);border:1px solid var(--bd);background:var(--sf2);font-size:13px;font-weight:700;cursor:pointer;text-align:center;transition:all .16s;font-family:'DM Sans',sans-serif;color:var(--tx)}
+.qa-btn:hover{border-color:var(--pr);color:var(--pr);background:var(--prd)}
+.qa-btn.primary{background:var(--pr);color:#fff;border-color:var(--pr)}.qa-btn.primary:hover{opacity:.9}
 
-  /* ── CARDS ── */
-  .card {
-    background: var(--card);
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    padding: 20px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-  }
-  .card-title { font-size:14px; color:var(--muted); font-weight:700; text-transform:uppercase; letter-spacing:.5px; margin-bottom:4px; }
+/* ── SARAL HOME ──────────────────────── */
+.saral-hero{margin:16px 16px 0;background:linear-gradient(135deg,#1A6B4A,#2E8B5A);border-radius:var(--rl);padding:24px;color:#fff;position:relative;overflow:hidden}
+.saral-hero::after{content:'🌱';position:absolute;right:18px;top:50%;transform:translateY(-50%);font-size:60px;opacity:.18}
+.sh-lbl{font-size:12px;font-weight:600;opacity:.75;margin-bottom:4px}
+.sh-amt{font-size:40px;font-weight:700;letter-spacing:-.5px;line-height:1.1}
+.sh-gain{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.18);border-radius:20px;padding:5px 13px;font-size:13px;font-weight:700;margin-top:10px}
+.sh-gain-sub{font-size:12px;opacity:.8;margin-top:4px}
+/* Saral breakdown box */
+.saral-bdown{margin:12px 16px;background:var(--sf);border:1px solid var(--bd);border-radius:var(--rl);overflow:hidden}
+.sb-row{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--bd)}
+.sb-row:last-child{border-bottom:none}
+.sb-icon{font-size:22px;width:42px;height:42px;background:var(--sf2);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sb-info{flex:1}
+.sb-nm{font-size:14px;font-weight:700}
+.sb-ds{font-size:12px;color:var(--tx2);font-weight:500;margin-top:1px}
+.sb-right{text-align:right}
+.sb-amt{font-size:16px;font-weight:700}
+.sb-ret{font-size:12px;font-weight:700;margin-top:2px}
+/* Saral actions grid */
+.saral-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:14px 16px}
+.sa{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rl);padding:14px 8px;text-align:center;cursor:pointer;transition:all .18s}
+.sa:hover{border-color:var(--pr);transform:translateY(-1px)}
+.sa-ic{font-size:26px;margin-bottom:6px}
+.sa-nm{font-size:12px;font-weight:700}
+.sa-ds{font-size:10px;color:var(--tx2);margin-top:2px}
+/* Saral holdings */
+.saral-holds{padding:0 16px}
+.sh-card{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rl);padding:14px;margin-bottom:10px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all .18s}
+.sh-card:hover{border-color:var(--pr)}
+.sh-logo{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0}
+.sh-info{flex:1}
+.sh-nm{font-size:15px;font-weight:700}
+.sh-pl{font-size:12px;color:var(--tx2);font-weight:500;margin-top:2px}
+.sh-right{text-align:right}
+.sh-val{font-size:16px;font-weight:700}
+.sh-ret{font-size:13px;font-weight:700;margin-top:2px}
 
-  /* ── BUTTONS ── */
-  .btn {
-    padding: 12px 22px; border-radius:12px; font-family:'Nunito',sans-serif;
-    font-weight:800; font-size:15px; cursor:pointer; border:none; transition: all .18s;
-    display:inline-flex; align-items:center; gap:7px;
-  }
-  .btn-primary { background:var(--primary); color:#fff; }
-  .btn-primary:hover { background:#155a3d; transform:translateY(-1px); box-shadow:0 4px 14px rgba(26,107,74,.3); }
-  .btn-accent { background:var(--accent); color:#1C2B3A; }
-  .btn-accent:hover { background:#e8b82e; transform:translateY(-1px); }
-  .btn-ghost { background:var(--primary-light); color:var(--primary); }
-  .btn-ghost:hover { background:#d4eddf; }
-  .btn-sm { padding:7px 14px; font-size:13px; border-radius:9px; }
-  .btn-block { width:100%; justify-content:center; }
+/* ── SHARED ──────────────────────────── */
+.card{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rl);padding:16px;transition:background .35s,border-color .35s}
+.sec-t{font-size:13px;font-weight:700;color:var(--tx);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.sec-t .mt{color:var(--tx3);font-size:11px;font-weight:500}
+.tag-g{background:var(--gnd);color:var(--gn);display:inline-flex;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:700}
+.tag-r{background:var(--rdd);color:var(--rd);display:inline-flex;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:700}
+.tag-b{background:var(--prd);color:var(--pr);display:inline-flex;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:700}
+.tag-y{background:var(--gdd);color:var(--gd);display:inline-flex;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:700}
+.btn{padding:11px 18px;border-radius:var(--r);font-family:'DM Sans',sans-serif;font-weight:700;font-size:14px;cursor:pointer;border:none;transition:all .16s;display:inline-flex;align-items:center;gap:7px}
+.btn-p{background:var(--pr);color:#fff}.btn-p:hover{opacity:.9;transform:translateY(-1px)}
+.btn-g{background:var(--sf2);color:var(--tx);border:1px solid var(--bd)}.btn-g:hover{border-color:var(--pr);color:var(--pr)}
+.btn-bl{width:100%;justify-content:center}
+.divd{height:1px;background:var(--bd);margin:12px 0}
 
-  /* ── TAGS ── */
-  .tag { display:inline-flex; align-items:center; gap:4px; padding:3px 10px; border-radius:20px; font-size:12px; font-weight:700; }
-  .tag-green { background:#DCFCE7; color:#15803D; }
-  .tag-red { background:#FEE2E2; color:#B91C1C; }
-  .tag-yellow { background:#FEF9C3; color:#854D0E; }
-  .tag-blue { background:#DBEAFE; color:#1D4ED8; }
+/* ── DISCOVER ────────────────────────── */
+.page-head{padding:16px 16px 10px}
+.page-head-title{font-size:20px;font-weight:700;letter-spacing:-.3px}
+.page-head-sub{font-size:13px;color:var(--tx2);margin-top:3px;font-weight:500}
+.sw{position:relative;margin:0 16px 12px}
+.sw input{width:100%;background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);padding:10px 14px 10px 38px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--tx);outline:none;transition:border-color .18s}
+.sw input::placeholder{color:var(--tx3)}
+.sw input:focus{border-color:var(--pr)}
+.sw .si{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:15px;pointer-events:none}
+.frow{display:flex;gap:6px;flex-wrap:wrap;padding:0 16px;margin-bottom:14px}
+.chip{padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;border:1px solid var(--bd);background:transparent;color:var(--tx2);transition:all .14s}
+.chip.active{border-color:var(--pr);background:var(--prd);color:var(--pr)}
+.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px}
+@media(max-width:400px){.sgrid{grid-template-columns:1fr}}
+.scard{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rl);padding:14px;cursor:pointer;transition:all .18s}
+.scard:hover{border-color:var(--pr);transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,0,0,.18)}
+.sc-top{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.sc-logo{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0}
+.sc-nm{font-size:13px;font-weight:700;line-height:1.2}
+.sc-sec{font-size:10px;color:var(--tx3);margin-top:1px}
+.sc-pr{font-size:18px;font-weight:700;letter-spacing:-.3px;margin-bottom:3px}
+.sc-ds{font-size:11px;color:var(--tx2);line-height:1.5;margin-bottom:8px}
+.sc-bt{display:flex;justify-content:space-between;align-items:center}
+.sc-fr{font-size:10px;font-weight:700;color:var(--pr)}
 
-  /* ── HOME / PORTFOLIO ── */
-  .hero-strip {
-    background: linear-gradient(135deg, #1A6B4A 0%, #2D9B6A 100%);
-    border-radius: var(--radius);
-    padding: 28px 28px;
-    color: #fff;
-    position:relative;
-    overflow:hidden;
-    margin-bottom:20px;
-  }
-  .hero-strip::after {
-    content:''; position:absolute; right:-30px; top:-30px;
-    width:160px; height:160px; border-radius:50%;
-    background: rgba(255,255,255,0.07);
-  }
-  .hero-strip::before {
-    content:''; position:absolute; right:60px; bottom:-40px;
-    width:120px; height:120px; border-radius:50%;
-    background: rgba(255,255,255,0.05);
-  }
-  .hero-label { font-size:13px; opacity:.8; font-weight:600; }
-  .hero-amount { font-size:42px; font-weight:900; font-family:'Sora',sans-serif; line-height:1.1; }
-  .hero-sub { font-size:14px; opacity:.85; margin-top:4px; }
-  .hero-gain { display:inline-flex; align-items:center; gap:5px; background:rgba(255,255,255,0.15); border-radius:8px; padding:4px 10px; font-weight:800; font-size:14px; margin-top:10px; }
+/* ── ROBO ────────────────────────────── */
+.robo-hdr{margin:0 16px 14px;background:linear-gradient(135deg,#1e1b4b,#2D2772);border-radius:var(--rl);padding:22px;color:#fff}
+[data-mode=saral] .robo-hdr{background:linear-gradient(135deg,#1A6B4A,#2E8B5A)}
+.rgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 16px 14px}
+.ropt{background:var(--sf);border:2px solid var(--bd);border-radius:var(--r);padding:14px 10px;text-align:center;cursor:pointer;transition:all .18s}
+.ropt.sel{border-color:var(--pr);background:var(--prd)}
+.ri{font-size:24px;margin-bottom:5px}
+.rn{font-size:12px;font-weight:700}
+.rd{font-size:10px;color:var(--tx2);margin-top:2px;line-height:1.4}
+.basket{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rl);padding:14px;display:flex;align-items:center;gap:12px;margin:0 16px 10px;cursor:pointer;transition:all .18s}
+.basket:hover{border-color:var(--pr)}
+.basket-ic{font-size:24px;width:46px;height:46px;background:var(--sf2);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.basket-nm{font-size:14px;font-weight:700}
+.basket-ds{font-size:11px;color:var(--tx2);margin-top:2px;line-height:1.4}
+.basket-ret{font-size:18px;font-weight:700;color:var(--gn)}
+.basket-per{font-size:10px;color:var(--tx3)}
 
-  .stats-row { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:20px; }
-  .stat-card { text-align:center; padding:16px 10px; }
-  .stat-val { font-size:22px; font-weight:900; font-family:'Sora',sans-serif; }
-  .stat-lbl { font-size:12px; color:var(--muted); font-weight:700; margin-top:2px; }
+/* ── SPARE CHANGE ────────────────────── */
+.sc-hdr{margin:0 16px 14px;background:linear-gradient(135deg,#92400E,#78350F);border-radius:var(--rl);padding:22px;color:#fff}
+[data-mode=saral] .sc-hdr{background:linear-gradient(135deg,#E65100,#BF360C)}
+.sstrip{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 16px;margin-bottom:14px}
+.sbox{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);padding:12px;text-align:center}
+.sv{font-size:18px;font-weight:700}
+.sl{font-size:10px;color:var(--tx2);font-weight:600;margin-top:2px;text-transform:uppercase;letter-spacing:.4px}
+.tog-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--bd)}
+.tgl{width:42px;height:23px;background:var(--sf3);border-radius:12px;cursor:pointer;position:relative;transition:background .2s;flex-shrink:0}
+.tgl.on{background:var(--gn)}
+.tgl::after{content:'';position:absolute;width:17px;height:17px;border-radius:50%;background:#fff;top:3px;left:3px;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.tgl.on::after{transform:translateX(19px)}
+.txr{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--bd)}
+.txr:last-child{border-bottom:none}
+.tx-ic{width:34px;height:34px;border-radius:9px;background:var(--sf2);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.tx-n{font-size:13px;font-weight:700}
+.tx-d{font-size:11px;color:var(--tx3);margin-top:1px}
+.tx-r{text-align:right;margin-left:auto}
+.tx-a{font-size:13px;font-weight:700}
+.tx-ru{font-size:11px;font-weight:700;color:var(--gd)}
 
-  /* Holdings */
-  .holding-row {
-    display:flex; align-items:center; gap:12px;
-    padding:14px 0; border-bottom:1px solid var(--border);
-    cursor:pointer; transition: background .15s;
-    border-radius:8px; padding:12px 8px;
-    margin: 0 -8px;
-  }
-  .holding-row:last-child { border-bottom:none; }
-  .holding-row:hover { background:#f9fafb; }
-  .stock-logo {
-    width:42px; height:42px; border-radius:12px;
-    display:flex; align-items:center; justify-content:center;
-    font-weight:900; font-size:14px; flex-shrink:0;
-  }
-  .holding-info { flex:1; }
-  .holding-name { font-weight:800; font-size:15px; }
-  .holding-sub { font-size:12px; color:var(--muted); font-weight:600; }
-  .holding-right { text-align:right; }
-  .holding-val { font-weight:900; font-size:15px; font-family:'Sora',sans-serif; }
-  .holding-ret { font-size:12px; font-weight:700; }
+/* ── STOCK DETAIL ────────────────────── */
+.sdh{padding:16px}
+.sdh-top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.sdh-logo{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;flex-shrink:0}
+.sdh-pr{font-size:32px;font-weight:700;letter-spacing:-.5px}
+.sdh-ch{display:inline-flex;align-items:center;gap:5px;padding:4px 9px;border-radius:6px;font-size:12px;font-weight:700;margin-top:4px}
+.plain-box{margin:0 16px 14px;background:var(--prd);border-left:3px solid var(--pr);border-radius:0 var(--r) var(--r) 0;padding:12px 14px}
+.plain-t{font-size:10px;font-weight:700;color:var(--pr);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+.plain-tx{font-size:13px;line-height:1.6;color:var(--tx)}
+.chart-wrap{margin:0 16px 14px;background:var(--sf);border:1px solid var(--bd);border-radius:var(--rl);padding:14px}
+.ctabs{display:flex;gap:4px;margin-bottom:12px}
+.ctab{padding:4px 12px;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;border:none;background:var(--sf2);color:var(--tx2);transition:all .14s;font-family:'DM Sans',sans-serif}
+.ctab.active{background:var(--pr);color:#fff}
+canvas{width:100%;height:160px;display:block}
+.igrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 16px 14px}
+.ibox{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);padding:12px}
+.ilbl{font-size:10px;color:var(--tx3);font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-bottom:3px}
+.ival{font-size:16px;font-weight:700}
+.inv-box{margin:0 16px 14px;background:var(--sf);border:1px solid var(--bd);border-radius:var(--rl);padding:16px}
+.amt-wrap{background:var(--sf2);border:2px solid var(--bd);border-radius:var(--r);padding:12px;text-align:center;margin-bottom:10px;transition:border-color .18s}
+.amt-wrap:focus-within{border-color:var(--pr)}
+.amt-lbl{font-size:10px;color:var(--tx3);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.amt-inp{font-size:32px;font-weight:700;background:transparent;border:none;text-align:center;width:100%;outline:none;color:var(--tx);font-family:'DM Sans',sans-serif}
+.amt-fr{font-size:11px;color:var(--pr);font-weight:700;margin-top:2px}
+.presets{display:flex;gap:6px;margin-bottom:12px}
+.preset{flex:1;text-align:center;padding:7px;border-radius:7px;background:var(--sf2);font-weight:700;font-size:12px;cursor:pointer;border:1px solid var(--bd);transition:all .14s;color:var(--tx2);font-family:'DM Sans',sans-serif}
+.preset:hover{border-color:var(--pr);color:var(--pr)}
+.inv-meta{display:flex;justify-content:space-between;padding:10px 0;border-top:1px solid var(--bd);margin-bottom:10px}
+.im-lbl{font-size:10px;color:var(--tx3);font-weight:600}
+.im-val{font-size:13px;font-weight:700;margin-top:2px}
 
-  /* Round-up card */
-  .roundup-card {
-    background: linear-gradient(135deg, #FFF8E1 0%, #FFFDE7 100%);
-    border: 1px solid #F6C744;
-    border-radius: var(--radius);
-    padding: 18px 20px;
-    display:flex; align-items:center; gap:16px;
-    margin-bottom:20px;
-  }
-  .roundup-icon { font-size:32px; }
-  .roundup-info { flex:1; }
-  .roundup-title { font-weight:900; font-size:16px; color:#1C2B3A; }
-  .roundup-sub { font-size:13px; color:#856404; font-weight:600; margin-top:2px; }
+/* ── POPUP ───────────────────────────── */
+.pop-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:800;align-items:flex-end;justify-content:center;backdrop-filter:blur(4px)}
+.pop-ov.open{display:flex}
+.popup{background:var(--sf);border:1px solid var(--bd);border-radius:20px 20px 0 0;padding:24px 20px 32px;max-width:520px;width:100%;animation:slideup .28s cubic-bezier(.25,.86,.44,1.07);max-height:82vh;overflow-y:auto}
+@keyframes slideup{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.pop-drag{width:36px;height:4px;background:var(--bd);border-radius:2px;margin:0 auto 18px}
+.pop-ic{font-size:42px;text-align:center;margin-bottom:12px}
+.pop-t{font-size:18px;font-weight:700;text-align:center;margin-bottom:6px}
+.pop-b{font-size:13px;color:var(--tx2);line-height:1.65;text-align:center;margin-bottom:16px}
+.pop-steps{list-style:none;margin-bottom:16px}
+.pop-steps li{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px}
+.ps-n{width:22px;height:22px;background:var(--prd);color:var(--pr);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px}
+.ps-tx{font-size:13px;color:var(--tx2);line-height:1.5}
+[data-mode=saral] .pop-b,[data-mode=saral] .ps-tx{font-size:15px}
 
-  /* ── DISCOVER ── */
-  .search-bar {
-    display:flex; align-items:center; gap:10px;
-    background:#fff; border:2px solid var(--border); border-radius:14px;
-    padding:12px 16px; margin-bottom:20px; transition: border-color .2s;
-  }
-  .search-bar:focus-within { border-color:var(--primary); }
-  .search-bar input { flex:1; border:none; outline:none; font-family:'Nunito',sans-serif; font-size:15px; font-weight:600; background:transparent; }
-  .search-bar input::placeholder { color:#aaa; }
+/* ── ONBOARD ─────────────────────────── */
+.ob-ov{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:999;display:flex;align-items:center;justify-content:center;padding:20px}
+.ob-box{background:var(--sf);border:1px solid var(--bd);border-radius:20px;padding:36px 28px;max-width:380px;width:100%;text-align:center}
+.ob-logo{font-size:24px;font-weight:700;letter-spacing:-.3px;margin-bottom:4px;display:flex;align-items:center;gap:9px;justify-content:center}
+.ob-logo .logo-mark{width:28px;height:28px}
+.ob-sub{font-size:13px;color:var(--tx2);margin-bottom:22px}
+.ob-q{font-size:17px;font-weight:700;margin-bottom:4px}
+.ob-qs{font-size:13px;color:var(--tx2);margin-bottom:18px;line-height:1.5}
+.ob-opts{display:flex;flex-direction:column;gap:8px}
+.ob-opt{padding:14px;border-radius:var(--r);border:2px solid var(--bd);cursor:pointer;transition:all .16s;text-align:left;display:flex;align-items:center;gap:12px}
+.ob-opt:hover{border-color:var(--pr);background:var(--prd)}
+.oo-ic{font-size:26px}
+.oo-nm{font-size:14px;font-weight:700}
+.oo-ds{font-size:11px;color:var(--tx2);margin-top:2px}
 
-  .filter-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px; }
-  .filter-chip {
-    padding:7px 16px; border-radius:20px; font-size:13px; font-weight:700;
-    cursor:pointer; border: 2px solid var(--border); background:#fff; color:var(--muted);
-    transition: all .15s;
-  }
-  .filter-chip.active { border-color:var(--primary); background:var(--primary-light); color:var(--primary); }
+/* ── TOAST ───────────────────────────── */
+.toast{position:fixed;bottom:20px;right:16px;z-index:900;background:var(--sf);border:1px solid var(--bd);border-radius:10px;padding:12px 16px;font-weight:600;font-size:13px;display:flex;align-items:center;gap:8px;box-shadow:0 6px 24px rgba(0,0,0,.35);transform:translateY(60px);opacity:0;transition:all .28s;max-width:280px;color:var(--tx)}
+.toast.show{transform:translateY(0);opacity:1}
 
-  .stock-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:14px; }
-  .stock-card {
-    background:#fff; border-radius: var(--radius); border:1px solid var(--border);
-    padding:18px; cursor:pointer; transition: all .2s;
-  }
-  .stock-card:hover { border-color:var(--primary); transform:translateY(-2px); box-shadow:0 6px 20px rgba(0,0,0,0.08); }
-  .stock-card-top { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
-  .stock-card-logo { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:15px; }
-  .stock-card-name { font-weight:900; font-size:15px; }
-  .stock-card-sector { font-size:12px; color:var(--muted); font-weight:600; }
-  .stock-card-price { font-size:26px; font-weight:900; font-family:'Sora',sans-serif; margin-bottom:6px; }
-  .stock-card-price span { font-size:14px; color:var(--muted); font-weight:600; }
-  .stock-card-desc { font-size:13px; color:var(--muted); line-height:1.5; margin-bottom:12px; font-weight:600; }
-  .stock-card-bottom { display:flex; align-items:center; justify-content:space-between; }
-  .mini-from { font-size:12px; color:var(--primary); font-weight:800; background:var(--primary-light); padding:4px 10px; border-radius:8px; }
+/* ── RESPONSIVE ──────────────────────── */
+@media(max-width:640px){
+  .nav-center{display:none}
+  .mpill{display:none}
+  .bottom-nav{display:flex!important}
+  .page{padding-bottom:70px}
+  #page-home.pro-mode{padding-top:calc(var(--nh) + 34px + 0px)}
+}
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--sf);border-top:1px solid var(--bd);z-index:600;padding:6px 0 10px;justify-content:space-around}
+.bn-item{display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;padding:4px 12px;border-radius:9px}
+.bn-ic{font-size:20px}
+.bn-lb{font-size:10px;font-weight:700;color:var(--tx2)}
+.bn-item.active .bn-lb{color:var(--pr)}
 
-  /* Mini sparkline */
-  .sparkline { margin: 8px 0; }
-
-  /* ── INVEST MODAL ── */
-  .overlay {
-    display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5);
-    z-index:200; align-items:flex-end; justify-content:center;
-    backdrop-filter: blur(4px);
-  }
-  .overlay.open { display:flex; }
-  .modal {
-    background:#fff; border-radius:24px 24px 0 0;
-    padding:28px 24px 36px; width:100%; max-width:480px;
-    animation: slideup .3s ease;
-  }
-  @keyframes slideup { from{transform:translateY(100%)} to{transform:translateY(0)} }
-  .modal-drag { width:40px; height:4px; background:#e0e0e0; border-radius:2px; margin:0 auto 20px; }
-  .modal-stock-row { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
-  .modal-logo { width:50px; height:50px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:18px; }
-  .modal-title { font-size:20px; font-weight:900; }
-  .modal-price { font-size:14px; color:var(--muted); font-weight:700; }
-
-  .amount-input-wrap {
-    background:var(--bg); border-radius:14px; padding:16px 18px;
-    text-align:center; margin-bottom:16px; border:2px solid transparent;
-    transition: border-color .2s;
-  }
-  .amount-input-wrap:focus-within { border-color:var(--primary); }
-  .amount-label { font-size:12px; color:var(--muted); font-weight:700; text-transform:uppercase; letter-spacing:.5px; margin-bottom:4px; }
-  .amount-input {
-    font-size:40px; font-weight:900; font-family:'Sora',sans-serif;
-    border:none; background:transparent; text-align:center; width:100%;
-    outline:none; color:var(--text);
-  }
-  .amount-frac { font-size:13px; color:var(--primary); font-weight:800; margin-top:4px; }
-
-  .presets { display:flex; gap:8px; margin-bottom:18px; }
-  .preset { flex:1; text-align:center; padding:8px; border-radius:10px; background:var(--bg); font-weight:800; font-size:13px; cursor:pointer; border:2px solid var(--border); transition:all .15s; }
-  .preset:hover { border-color:var(--primary); color:var(--primary); background:var(--primary-light); }
-
-  .invest-info { display:flex; justify-content:space-between; padding:12px 0; border-top:1px solid var(--border); margin-bottom:16px; }
-  .invest-info-item { font-size:13px; }
-  .invest-info-label { color:var(--muted); font-weight:600; }
-  .invest-info-val { font-weight:900; color:var(--text); }
-
-  /* ── ROBO ── */
-  .robo-hero {
-    background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
-    border-radius: var(--radius); padding:28px; color:#fff; margin-bottom:20px;
-    position:relative; overflow:hidden;
-  }
-  .robo-hero::after { content:'🤖'; position:absolute; right:20px; top:50%; transform:translateY(-50%); font-size:64px; opacity:.3; }
-  .robo-title { font-size:24px; font-weight:900; margin-bottom:6px; }
-  .robo-sub { font-size:14px; opacity:.7; font-weight:600; line-height:1.5; max-width:320px; }
-
-  .risk-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:20px; }
-  .risk-card {
-    border-radius:14px; padding:18px; cursor:pointer; border:2px solid var(--border);
-    background:#fff; transition:all .2s; text-align:center;
-  }
-  .risk-card.selected { border-color:var(--primary); background:var(--primary-light); }
-  .risk-card:hover:not(.selected) { border-color:#ccc; }
-  .risk-emoji { font-size:28px; margin-bottom:8px; }
-  .risk-name { font-weight:900; font-size:14px; }
-  .risk-desc { font-size:12px; color:var(--muted); font-weight:600; margin-top:3px; line-height:1.4; }
-
-  .basket-card {
-    background:#fff; border-radius: var(--radius); border:1px solid var(--border);
-    padding:18px; display:flex; align-items:center; gap:14px;
-    margin-bottom:12px; cursor:pointer; transition:all .2s;
-  }
-  .basket-card:hover { border-color:var(--primary); box-shadow:0 4px 14px rgba(0,0,0,0.07); }
-  .basket-icon { font-size:32px; width:56px; height:56px; border-radius:14px; background:var(--bg); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-  .basket-name { font-weight:900; font-size:16px; }
-  .basket-desc { font-size:13px; color:var(--muted); font-weight:600; margin-top:2px; line-height:1.4; }
-  .basket-perf { text-align:right; flex-shrink:0; }
-  .basket-ret { font-weight:900; font-size:18px; font-family:'Sora',sans-serif; color:var(--green); }
-  .basket-period { font-size:11px; color:var(--muted); font-weight:600; }
-
-  /* ── SPARE CHANGE ── */
-  .sc-hero {
-    background: linear-gradient(135deg, #F6C744 0%, #FF9900 100%);
-    border-radius: var(--radius); padding:28px; color:#1C2B3A; margin-bottom:20px;
-    position:relative; overflow:hidden;
-  }
-  .sc-hero::after { content:'🪙'; position:absolute; right:24px; top:50%; transform:translateY(-50%); font-size:64px; opacity:.4; }
-  .sc-title { font-size:24px; font-weight:900; margin-bottom:6px; }
-  .sc-sub { font-size:14px; opacity:.75; font-weight:600; max-width:300px; line-height:1.5; }
-
-  .txn-row {
-    display:flex; align-items:center; gap:12px;
-    padding:14px 0; border-bottom:1px solid var(--border);
-  }
-  .txn-row:last-child { border-bottom:none; }
-  .txn-icon { width:40px; height:40px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:20px; background:var(--bg); flex-shrink:0; }
-  .txn-name { font-weight:800; font-size:14px; }
-  .txn-date { font-size:12px; color:var(--muted); font-weight:600; }
-  .txn-right { text-align:right; margin-left:auto; }
-  .txn-amt { font-weight:900; font-size:15px; font-family:'Sora',sans-serif; }
-  .txn-roundup { font-size:12px; font-weight:700; color:var(--primary); }
-
-  .sc-toggle { display:flex; align-items:center; justify-content:space-between; padding:16px 0; }
-  .sc-toggle-label { font-weight:800; font-size:15px; }
-  .sc-toggle-sub { font-size:13px; color:var(--muted); font-weight:600; }
-  .toggle {
-    width:48px; height:26px; border-radius:13px; background:#E2E8F0;
-    cursor:pointer; position:relative; transition:background .2s; flex-shrink:0;
-  }
-  .toggle.on { background:var(--primary); }
-  .toggle::after {
-    content:''; position:absolute; width:20px; height:20px; border-radius:50%;
-    background:#fff; top:3px; left:3px; transition:transform .2s;
-    box-shadow:0 1px 4px rgba(0,0,0,0.2);
-  }
-  .toggle.on::after { transform:translateX(22px); }
-
-  /* ── STOCK DETAIL ── */
-  .stock-detail-header {
-    background: linear-gradient(135deg, #1A6B4A 0%, #2D9B6A 100%);
-    border-radius: var(--radius); padding:24px; color:#fff; margin-bottom:20px;
-  }
-  .sdh-top { display:flex; align-items:center; gap:14px; margin-bottom:16px; }
-  .sdh-logo { width:52px; height:52px; border-radius:14px; background:rgba(255,255,255,0.2); display:flex; align-items:center; justify-content:center; font-weight:900; font-size:18px; }
-  .sdh-name { font-size:22px; font-weight:900; }
-  .sdh-sector { font-size:14px; opacity:.8; font-weight:600; }
-  .sdh-price { font-size:44px; font-weight:900; font-family:'Sora',sans-serif; line-height:1; }
-  .sdh-change { display:inline-flex; align-items:center; gap:5px; background:rgba(255,255,255,0.15); border-radius:8px; padding:5px 12px; font-weight:800; font-size:14px; margin-top:8px; }
-
-  /* Chart */
-  .chart-container { background:#fff; border-radius: var(--radius); border:1px solid var(--border); padding:20px; margin-bottom:16px; }
-  .chart-tabs { display:flex; gap:6px; margin-bottom:16px; }
-  .chart-tab { padding:5px 14px; border-radius:8px; font-size:13px; font-weight:700; cursor:pointer; border:none; background:var(--bg); color:var(--muted); transition:all .15s; }
-  .chart-tab.active { background:var(--primary); color:#fff; }
-  canvas { width:100%; height:180px; display:block; }
-
-  .stock-info-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-bottom:16px; }
-  .info-item { background:#fff; border-radius:12px; border:1px solid var(--border); padding:14px; }
-  .info-label { font-size:12px; color:var(--muted); font-weight:700; text-transform:uppercase; letter-spacing:.4px; margin-bottom:4px; }
-  .info-val { font-size:18px; font-weight:900; font-family:'Sora',sans-serif; }
-
-  .what-is { background:var(--primary-light); border-radius: var(--radius); padding:18px; margin-bottom:16px; border-left:4px solid var(--primary); }
-  .what-is-title { font-weight:900; font-size:15px; color:var(--primary); margin-bottom:6px; }
-  .what-is-text { font-size:14px; color:#2D5A3D; font-weight:600; line-height:1.6; }
-
-  /* ── TOOLTIP ── */
-  .tooltip-wrap { position:relative; display:inline-flex; align-items:center; gap:4px; }
-  .tooltip-icon { width:16px; height:16px; border-radius:50%; background:var(--muted); color:#fff; font-size:10px; font-weight:900; display:inline-flex; align-items:center; justify-content:center; cursor:help; }
-  .tooltip-box {
-    display:none; position:absolute; bottom:120%; left:50%; transform:translateX(-50%);
-    background:#1C2B3A; color:#fff; border-radius:10px; padding:8px 12px;
-    font-size:12px; font-weight:600; width:200px; line-height:1.5; z-index:50;
-    pointer-events:none;
-  }
-  .tooltip-wrap:hover .tooltip-box { display:block; }
-
-  /* ── BOTTOM NAV (mobile-style) ── */
-  .bottom-nav {
-    display:none;
-  }
-
-  /* ── EDUCATION TIPS ── */
-  .tip-box {
-    background:var(--primary-light); border-radius:12px; padding:14px 16px;
-    display:flex; gap:10px; align-items:flex-start; margin-bottom:14px;
-  }
-  .tip-emoji { font-size:20px; flex-shrink:0; }
-  .tip-text { font-size:13px; color:#1A4731; font-weight:700; line-height:1.5; }
-
-  /* Layout helpers */
-  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
-  .section-title { font-size:18px; font-weight:900; margin-bottom:14px; display:flex; align-items:center; gap:8px; }
-  .section-title small { font-size:13px; font-weight:700; color:var(--muted); }
-  .divider { height:1px; background:var(--border); margin:16px 0; }
-
-  /* Onboarding flow */
-  .onboard-step { display:none; }
-  .onboard-step.active { display:block; }
-  .step-dots { display:flex; gap:6px; justify-content:center; margin-bottom:28px; }
-  .step-dot { width:8px; height:8px; border-radius:50%; background:var(--border); transition:all .2s; }
-  .step-dot.done { background:var(--primary); }
-  .step-dot.active { width:20px; border-radius:4px; background:var(--primary); }
-  .step-icon { font-size:64px; text-align:center; margin-bottom:16px; }
-  .step-heading { font-size:26px; font-weight:900; text-align:center; margin-bottom:8px; }
-  .step-sub { font-size:15px; color:var(--muted); font-weight:600; text-align:center; line-height:1.6; margin-bottom:28px; }
-
-  .risk-quiz { margin-bottom:20px; }
-  .quiz-q { font-weight:900; font-size:16px; margin-bottom:12px; }
-  .quiz-options { display:flex; flex-direction:column; gap:8px; }
-  .quiz-opt {
-    padding:14px 16px; border-radius:12px; border:2px solid var(--border);
-    background:#fff; cursor:pointer; font-weight:700; font-size:14px;
-    transition:all .15s; display:flex; align-items:center; gap:10px;
-  }
-  .quiz-opt:hover { border-color:var(--primary); color:var(--primary); background:var(--primary-light); }
-  .quiz-opt.selected { border-color:var(--primary); color:var(--primary); background:var(--primary-light); }
-
-  /* Notification toast */
-  .toast {
-    position:fixed; bottom:24px; right:24px; z-index:1000;
-    background:#1C2B3A; color:#fff; border-radius:14px;
-    padding:14px 20px; font-weight:700; font-size:14px;
-    display:flex; align-items:center; gap:10px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-    transform:translateY(100px); opacity:0; transition:all .3s;
-    max-width:320px;
-  }
-  .toast.show { transform:translateY(0); opacity:1; }
-
-  @media(max-width:600px) {
-    .stats-row { grid-template-columns:repeat(3,1fr); gap:8px; }
-    .risk-cards { grid-template-columns:1fr; }
-    .stock-grid { grid-template-columns:1fr; }
-    .two-col { grid-template-columns:1fr; }
-    .stock-info-grid { grid-template-columns:repeat(2,1fr); }
-    .nav-tabs { display:none; }
-    .bottom-nav { display:flex; position:fixed; bottom:0; left:0; right:0; background:#fff; border-top:1px solid var(--border); z-index:100; padding:8px 0 12px; justify-content:space-around; }
-    .bnav-item { display:flex; flex-direction:column; align-items:center; gap:3px; cursor:pointer; padding:4px 12px; border-radius:10px; }
-    .bnav-icon { font-size:22px; }
-    .bnav-label { font-size:11px; font-weight:700; color:var(--muted); }
-    .bnav-item.active .bnav-label { color:var(--primary); }
-    .page { padding-bottom:90px; }
-  }
+/* Utility */
+.pad16{padding:0 16px}
+.mb10{margin-bottom:10px}
+.mb14{margin-bottom:14px}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--bd);border-radius:2px}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ══ ONBOARD ══════════════════════════════════════════════ -->
+<div class="ob-ov" id="ob">
+  <div class="ob-box">
+    <div class="ob-logo">
+      <div class="logo-mark"><svg viewBox="0 0 14 14"><path d="M2 10 L7 2 L12 10 Z" opacity=".6"/><path d="M4 10 L7 5 L10 10 Z"/></svg></div>
+      Proscitos
+    </div>
+    <div class="ob-sub">Invest in India's best companies</div>
+    <div class="ob-q">How would you like to use the app?</div>
+    <div class="ob-qs">We'll set up the right experience for you. You can switch anytime from the top bar.</div>
+    <div class="ob-opts">
+      <div class="ob-opt" onclick="setMode('pro')">
+        <div class="oo-ic">📊</div>
+        <div><div class="oo-nm">Pro Mode</div><div class="oo-ds">Full charts, market data, watchlist, detailed analytics</div></div>
+      </div>
+      <div class="ob-opt" onclick="setMode('saral')">
+        <div class="oo-ic">🙏</div>
+        <div><div class="oo-nm">सरल Mode (Saral)</div><div class="oo-ds">Simple screens, plain language, step-by-step help — for everyone</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ NAV ══════════════════════════════════════════════════ -->
 <nav class="nav">
-  <div class="nav-logo">🌿 FractoVest <span>BETA</span></div>
-  <div class="nav-tabs">
-    <button class="nav-tab active" onclick="showPage('home')">🏠 Home</button>
-    <button class="nav-tab" onclick="showPage('discover')">🔍 Discover</button>
-    <button class="nav-tab" onclick="showPage('robo')">🤖 Robo</button>
-    <button class="nav-tab" onclick="showPage('sparechange')">🪙 Spare Change</button>
+  <div class="logo">
+    <div class="logo-mark"><svg viewBox="0 0 14 14"><path d="M2 10 L7 2 L12 10 Z" fill="white" opacity=".6"/><path d="M4 10 L7 5 L10 10 Z" fill="white"/></svg></div>
+    Proscitos
+  </div>
+  <div class="nav-center">
+    <button class="ntab active" onclick="showPage('home')">Home</button>
+    <button class="ntab" onclick="showPage('discover')">Discover</button>
+    <button class="ntab" onclick="showPage('robo')">Robo Advisor</button>
+    <button class="ntab" onclick="showPage('sparechange')">Spare Change</button>
   </div>
   <div class="nav-right">
-    <div class="nav-balance">₹12,480 wallet</div>
-    <div class="nav-avatar">N</div>
+    <div class="mpill">
+      <button class="mopt active" id="mp" onclick="setMode('pro')">Pro</button>
+      <button class="mopt" id="ms" onclick="setMode('saral')">सरल</button>
+    </div>
+    <!-- Lang dropdown -->
+    <div class="lang-wrap">
+      <button class="lang-btn" id="lb" onclick="toggleLangDd()">
+        <span id="lb-flag">🇬🇧</span>
+        <span id="lb-name">EN</span>
+        <span style="font-size:9px;opacity:.6">▾</span>
+      </button>
+      <div class="lang-dd" id="lang-dd">
+        <div class="lang-opt active" onclick="setLang('en','🇬🇧','EN','English')"><span class="lang-native">English</span><span class="lang-en">EN</span></div>
+        <div class="lang-opt" onclick="setLang('hi','🇮🇳','हि','Hindi')"><span class="lang-native">हिंदी</span><span class="lang-en">Hindi</span></div>
+        <div class="lang-opt" onclick="setLang('bn','🇮🇳','বাং','Bengali')"><span class="lang-native">বাংলা</span><span class="lang-en">Bengali</span></div>
+        <div class="lang-opt" onclick="setLang('te','🇮🇳','తె','Telugu')"><span class="lang-native">తెలుగు</span><span class="lang-en">Telugu</span></div>
+        <div class="lang-opt" onclick="setLang('mr','🇮🇳','म','Marathi')"><span class="lang-native">मराठी</span><span class="lang-en">Marathi</span></div>
+        <div class="lang-opt" onclick="setLang('ta','🇮🇳','த','Tamil')"><span class="lang-native">தமிழ்</span><span class="lang-en">Tamil</span></div>
+        <div class="lang-opt" onclick="setLang('gu','🇮🇳','ગુ','Gujarati')"><span class="lang-native">ગુજરાતી</span><span class="lang-en">Gujarati</span></div>
+        <div class="lang-opt" onclick="setLang('kn','🇮🇳','ಕ','Kannada')"><span class="lang-native">ಕನ್ನಡ</span><span class="lang-en">Kannada</span></div>
+        <div class="lang-opt" onclick="setLang('ml','🇮🇳','മ','Malayalam')"><span class="lang-native">മലയാളം</span><span class="lang-en">Malayalam</span></div>
+        <div class="lang-opt" onclick="setLang('pa','🇮🇳','ਪੰ','Punjabi')"><span class="lang-native">ਪੰਜਾਬੀ</span><span class="lang-en">Punjabi</span></div>
+      </div>
+    </div>
+    <div class="wallet">₹12,480</div>
+    <div class="avatar">N</div>
   </div>
 </nav>
 
-<!-- BOTTOM NAV (mobile) -->
+<!-- Ticker (Pro only) -->
+<div class="ticker" id="ticker">
+  <div class="ti"><span class="tn">NIFTY 50</span><span class="tv">22,342</span><span class="tc up">▲0.84%</span></div>
+  <div class="ti"><span class="tn">SENSEX</span><span class="tv">73,667</span><span class="tc up">▲0.79%</span></div>
+  <div class="ti"><span class="tn">NIFTY BANK</span><span class="tv">48,236</span><span class="tc dn">▼0.22%</span></div>
+  <div class="ti"><span class="tn">MRF</span><span class="tv">₹1,31,450</span><span class="tc up">▲0.95%</span></div>
+  <div class="ti"><span class="tn">TCS</span><span class="tv">₹3,950</span><span class="tc up">▲0.71%</span></div>
+  <div class="ti"><span class="tn">INFY</span><span class="tv">₹1,820</span><span class="tc up">▲1.73%</span></div>
+  <div class="ti"><span class="tn">TITAN</span><span class="tv">₹3,280</span><span class="tc up">▲1.30%</span></div>
+  <div class="ti"><span class="tn">NESTLEIND</span><span class="tv">₹24,500</span><span class="tc dn">▼0.73%</span></div>
+  <div class="ti"><span class="tn">BAJFINANCE</span><span class="tv">₹7,200</span><span class="tc dn">▼1.30%</span></div>
+  <div class="ti"><span class="tn">USD/INR</span><span class="tv">83.42</span><span class="tc dn">▼0.05%</span></div>
+</div>
+
+<!-- Bottom Nav (mobile) -->
 <div class="bottom-nav">
-  <div class="bnav-item active" onclick="showPage('home')"><div class="bnav-icon">🏠</div><div class="bnav-label">Home</div></div>
-  <div class="bnav-item" onclick="showPage('discover')"><div class="bnav-icon">🔍</div><div class="bnav-label">Discover</div></div>
-  <div class="bnav-item" onclick="showPage('robo')"><div class="bnav-icon">🤖</div><div class="bnav-label">Robo</div></div>
-  <div class="bnav-item" onclick="showPage('sparechange')"><div class="bnav-icon">🪙</div><div class="bnav-label">Change</div></div>
+  <div class="bn-item active" onclick="showPage('home')"><div class="bn-ic">🏠</div><div class="bn-lb" data-k="home">Home</div></div>
+  <div class="bn-item" onclick="showPage('discover')"><div class="bn-ic">🔍</div><div class="bn-lb" data-k="discover">Discover</div></div>
+  <div class="bn-item" onclick="showPage('robo')"><div class="bn-ic">🤖</div><div class="bn-lb" data-k="robo">Robo</div></div>
+  <div class="bn-item" onclick="showPage('sparechange')"><div class="bn-ic">🪙</div><div class="bn-lb" data-k="spare">Spare</div></div>
 </div>
 
-<!-- ══════════════ PAGE: HOME ══════════════ -->
-<div class="page active" id="page-home">
-<div class="container">
+<!-- ══════════════════════════════════════════════════════════
+     PAGE: HOME
+══════════════════════════════════════════════════════════ -->
+<div class="page active pro-mode" id="page-home">
 
-  <!-- Hero -->
-  <div class="hero-strip">
-    <div class="hero-label">Total Portfolio Value</div>
-    <div class="hero-amount">₹8,247<span style="font-size:22px;opacity:.8">.50</span></div>
-    <div class="hero-sub">Invested: ₹7,600 &nbsp;·&nbsp; 3 stocks</div>
-    <div class="hero-gain">📈 +₹647.50 &nbsp; <span style="opacity:.8">(+8.5% overall)</span></div>
-  </div>
-
-  <!-- Stats -->
-  <div class="stats-row">
-    <div class="card stat-card">
-      <div class="stat-val" style="color:var(--green)">+₹38</div>
-      <div class="stat-lbl">Today's Gain</div>
-    </div>
-    <div class="card stat-card">
-      <div class="stat-val" style="color:var(--primary)">₹312</div>
-      <div class="stat-lbl">Spare Change<br>Saved</div>
-    </div>
-    <div class="card stat-card">
-      <div class="stat-val">4 mo</div>
-      <div class="stat-lbl">Investing<br>Streak 🔥</div>
-    </div>
-  </div>
-
-  <!-- Round-up nudge -->
-  <div class="roundup-card">
-    <div class="roundup-icon">🪙</div>
-    <div class="roundup-info">
-      <div class="roundup-title">₹47 in spare change ready!</div>
-      <div class="roundup-sub">From 6 transactions this week — auto-invest into your portfolio?</div>
-    </div>
-    <button class="btn btn-accent btn-sm" onclick="showToast('✅ Invested ₹47 into your portfolio!')">Invest Now</button>
-  </div>
-
-  <!-- Holdings -->
-  <div class="section-title">My Holdings <small>tap to see details</small></div>
-  <div class="card" style="margin-bottom:20px">
-    <div class="holding-row" onclick="showStock('MRF')">
-      <div class="stock-logo" style="background:#FFF3E0;color:#E65100">MR</div>
-      <div class="holding-info">
-        <div class="holding-name">MRF Ltd</div>
-        <div class="holding-sub">0.006 shares · India's biggest tyre maker</div>
-      </div>
-      <div class="holding-right">
-        <div class="holding-val">₹780</div>
-        <div class="holding-ret" style="color:var(--green)">+₹30 (+4.0%)</div>
+  <!-- PRO VIEW -->
+  <div id="pro-home">
+    <!-- Portfolio value — Zerodha minimal style -->
+    <div class="pv-block">
+      <div class="pv-label" data-k="pv_label">Total Portfolio Value</div>
+      <div class="pv-amount">₹8,247<span style="font-size:18px;opacity:.6">.50</span></div>
+      <div class="pv-meta">
+        <span class="pv-gain" style="color:var(--gn)" data-k="pv_gain">+₹647.50 (+8.5%)</span>
+        <span class="pv-invested" data-k="pv_invested">Invested: ₹7,600</span>
       </div>
     </div>
-    <div class="holding-row" onclick="showStock('PAGE')">
-      <div class="stock-logo" style="background:#E8F5E9;color:#2E7D32">PG</div>
-      <div class="holding-info">
-        <div class="holding-name">Page Industries</div>
-        <div class="holding-sub">0.015 shares · Makes Jockey in India</div>
+
+    <!-- Summary -->
+    <div class="sum-row">
+      <div class="sum-item"><div class="sum-val" style="color:var(--gn)">+₹38</div><div class="sum-lbl" data-k="today_gain">Today</div></div>
+      <div class="sum-item"><div class="sum-val">3</div><div class="sum-lbl" data-k="holdings">Holdings</div></div>
+      <div class="sum-item"><div class="sum-val">₹312</div><div class="sum-lbl" data-k="spare_saved">Spare Change</div></div>
+    </div>
+
+    <!-- Spare Change nudge -->
+    <div class="sc-nudge" onclick="showPopup('spare')">
+      <div class="sc-nudge-icon">🪙</div>
+      <div class="sc-nudge-info">
+        <div class="sc-nudge-title" data-k="nudge_title">₹47 spare change ready to invest</div>
+        <div class="sc-nudge-sub" data-k="nudge_sub">From 6 UPI transactions this week</div>
       </div>
-      <div class="holding-right">
-        <div class="holding-val">₹600</div>
-        <div class="holding-ret" style="color:var(--green)">+₹22 (+3.8%)</div>
+      <button class="sc-nudge-btn" data-k="invest_now">Invest Now</button>
+    </div>
+
+    <!-- Investment Breakdown (Fractional vs Spare Change) -->
+    <div class="sec-div"></div>
+    <div class="holdings-header">
+      <div class="hdr-title" data-k="breakdown">Breakdown</div>
+    </div>
+    <div class="bdown-row" onclick="showPage('discover')">
+      <div class="bd-icon">📊</div>
+      <div class="bd-info">
+        <div class="bd-nm" data-k="frac_invest">Fractional Investing</div>
+        <div class="bd-sub" data-k="frac_sub">Your stock picks · 3 holdings</div>
+      </div>
+      <div class="bd-right">
+        <div class="bd-amt">₹7,288</div>
+        <div class="bd-ret" style="color:var(--gn)">+₹620 · +9.3%</div>
       </div>
     </div>
-    <div class="holding-row" onclick="showStock('HONAUT')">
-      <div class="stock-logo" style="background:#E3F2FD;color:#1565C0">HW</div>
-      <div class="holding-info">
-        <div class="holding-name">Honeywell Auto</div>
-        <div class="holding-sub">0.018 shares · Industrial technology</div>
+    <div class="bdown-row" onclick="showPage('sparechange')">
+      <div class="bd-icon">🪙</div>
+      <div class="bd-info">
+        <div class="bd-nm" data-k="spare_invest">Spare Change</div>
+        <div class="bd-sub" data-k="spare_sub">Auto round-ups · 48 transactions</div>
       </div>
-      <div class="holding-right">
-        <div class="holding-val">₹720</div>
-        <div class="holding-ret" style="color:var(--red)">-₹14 (-1.9%)</div>
+      <div class="bd-right">
+        <div class="bd-amt">₹312</div>
+        <div class="bd-ret" style="color:var(--gn)">+₹28 · +9.0%</div>
       </div>
+    </div>
+
+    <!-- Holdings List -->
+    <div class="sec-div"></div>
+    <div class="holdings-header">
+      <div class="hdr-title" data-k="holdings_title">Holdings</div>
+      <div class="hdr-count">3 stocks</div>
+    </div>
+    <div style="background:var(--sf);border:1px solid var(--bd);border-radius:var(--rl);margin:0 16px 10px;overflow:hidden">
+      <div class="h-row" onclick="showStock('MRF')">
+        <div class="h-logo" style="background:#FFF3E0;color:#E65100">MR</div>
+        <div class="h-info">
+          <div class="h-nm">MRF Ltd</div>
+          <div class="h-sub">0.006 shares · NSE: MRF</div>
+        </div>
+        <div class="h-right">
+          <div class="h-val">₹780</div>
+          <div class="h-ret" style="color:var(--gn)">+₹39 (+5.2%)</div>
+        </div>
+      </div>
+      <div class="h-row" onclick="showStock('PAGE')">
+        <div class="h-logo" style="background:#E8F5E9;color:#2E7D32">PG</div>
+        <div class="h-info">
+          <div class="h-nm">Page Industries</div>
+          <div class="h-sub">0.015 shares · NSE: PAGEIND</div>
+        </div>
+        <div class="h-right">
+          <div class="h-val">₹600</div>
+          <div class="h-ret" style="color:var(--gn)">+₹38 (+6.5%)</div>
+        </div>
+      </div>
+      <div class="h-row" onclick="showStock('HONAUT')">
+        <div class="h-logo" style="background:#E3F2FD;color:#1565C0">HW</div>
+        <div class="h-info">
+          <div class="h-nm">Honeywell Auto</div>
+          <div class="h-sub">0.018 shares · NSE: HONAUT</div>
+        </div>
+        <div class="h-right">
+          <div class="h-val">₹720</div>
+          <div class="h-ret" style="color:var(--rd)">-₹13 (-1.9%)</div>
+        </div>
+      </div>
+    </div>
+    <div class="qa-row">
+      <button class="qa-btn primary" onclick="showPage('discover')" data-k="add_stock">+ Add Stock</button>
+      <button class="qa-btn" onclick="showPage('robo')" data-k="ask_robo">🤖 Ask Robo</button>
     </div>
   </div>
 
-  <!-- Tip box -->
-  <div class="tip-box">
-    <div class="tip-emoji">💡</div>
-    <div class="tip-text">Did you know? You don't need ₹1,30,000 to own MRF. With FractoVest, ₹500 gets you a piece of any stock — no matter the price.</div>
-  </div>
+  <!-- SARAL VIEW -->
+  <div id="saral-home" style="display:none">
+    <div class="saral-hero">
+      <div class="sh-lbl" data-k="your_savings">Your Total Savings</div>
+      <div class="sh-amt">₹8,247</div>
+      <div class="sh-gain">📈 <span data-k="earned_extra">You earned ₹647 extra!</span></div>
+      <div class="sh-gain-sub" data-k="invested_info">You put in ₹7,600 · it is now worth more 🎉</div>
+    </div>
 
-  <!-- Quick Actions -->
-  <div class="section-title">Quick Actions</div>
-  <div class="two-col">
-    <button class="btn btn-primary btn-block" onclick="showPage('discover')">🔍 Find a Stock</button>
-    <button class="btn btn-ghost btn-block" onclick="showPage('robo')">🤖 Ask Robo Advisor</button>
-  </div>
+    <!-- Saral breakdown -->
+    <div class="saral-bdown">
+      <div class="sb-row">
+        <div class="sb-icon">📊</div>
+        <div class="sb-info">
+          <div class="sb-nm" data-k="frac_invest">You chose stocks yourself</div>
+          <div class="sb-ds" data-k="frac_sub">Fractional investing</div>
+        </div>
+        <div class="sb-right">
+          <div class="sb-amt">₹7,288</div>
+          <div class="sb-ret" style="color:var(--gn)" data-k="profit_620">+₹620 profit ✅</div>
+        </div>
+      </div>
+      <div class="sb-row">
+        <div class="sb-icon">🪙</div>
+        <div class="sb-info">
+          <div class="sb-nm" data-k="spare_invest">Saved automatically</div>
+          <div class="sb-ds" data-k="spare_sub">Spare change from daily UPI payments</div>
+        </div>
+        <div class="sb-right">
+          <div class="sb-amt">₹312</div>
+          <div class="sb-ret" style="color:var(--gn)" data-k="profit_28">+₹28 profit ✅</div>
+        </div>
+      </div>
+    </div>
 
+    <!-- Quick actions -->
+    <div class="saral-actions">
+      <div class="sa" onclick="showPage('discover')"><div class="sa-ic">🔍</div><div class="sa-nm" data-k="find_stock">Find Stock</div><div class="sa-ds" data-k="any_company">Any company</div></div>
+      <div class="sa" onclick="showPage('robo')"><div class="sa-ic">🤖</div><div class="sa-nm" data-k="ask_robo">Ask Robo</div><div class="sa-ds" data-k="get_suggest">Suggestions</div></div>
+      <div class="sa" onclick="showPage('sparechange')"><div class="sa-ic">🪙</div><div class="sa-nm" data-k="spare_invest">Spare Change</div><div class="sa-ds" data-k="auto_invest">Auto-invest</div></div>
+      <div class="sa" onclick="showPopup('howto')"><div class="sa-ic">❓</div><div class="sa-nm" data-k="how_works">How It Works</div><div class="sa-ds" data-k="simple_guide">Simple guide</div></div>
+    </div>
+
+    <!-- Saral holdings -->
+    <div style="padding:0 16px 8px;font-size:13px;font-weight:700;color:var(--tx2);text-transform:uppercase;letter-spacing:.5px" data-k="holdings_title">Your Shares</div>
+    <div class="saral-holds">
+      <div class="sh-card" onclick="showStock('MRF')"><div class="sh-logo" style="background:#FFF3E0;color:#E65100">MR</div><div class="sh-info"><div class="sh-nm">MRF</div><div class="sh-pl" data-k="mrf_desc">Makes tyres for cars &amp; bikes 🚗</div></div><div class="sh-right"><div class="sh-val">₹780</div><div class="sh-ret" style="color:var(--gn)" data-k="earned_39">+₹39 earned ✅</div></div></div>
+      <div class="sh-card" onclick="showStock('PAGE')"><div class="sh-logo" style="background:#E8F5E9;color:#2E7D32">PG</div><div class="sh-info"><div class="sh-nm">Page Industries</div><div class="sh-pl" data-k="page_desc">Makes Jockey clothes 👕</div></div><div class="sh-right"><div class="sh-val">₹600</div><div class="sh-ret" style="color:var(--gn)" data-k="earned_38">+₹38 earned ✅</div></div></div>
+      <div class="sh-card" onclick="showStock('HONAUT')"><div class="sh-logo" style="background:#E3F2FD;color:#1565C0">HW</div><div class="sh-info"><div class="sh-nm">Honeywell</div><div class="sh-pl" data-k="honaut_desc">Makes factory machines 🏭</div></div><div class="sh-right"><div class="sh-val">₹720</div><div class="sh-ret" style="color:var(--rd)" data-k="wait_bit">-₹13 · wait a bit ⏳</div></div></div>
+    </div>
+    <div style="padding:14px 16px 0"><button class="btn btn-p btn-bl" onclick="showPage('discover')" data-k="add_stock">+ Find a Stock to Buy</button></div>
+  </div>
 </div>
-</div>
 
-<!-- ══════════════ PAGE: DISCOVER ══════════════ -->
+<!-- ══════════════════════════════════════════════════════════
+     PAGE: DISCOVER
+══════════════════════════════════════════════════════════ -->
 <div class="page" id="page-discover">
-<div class="container">
-
-  <div class="section-title" style="margin-bottom:10px">Discover Stocks</div>
-  <div class="tip-box" style="margin-bottom:14px">
-    <div class="tip-emoji">✨</div>
-    <div class="tip-text">All prices are real-time. You can invest any amount — ₹10, ₹500, ₹5000. You'll own a fraction of the share.</div>
+  <div class="page-head"><div class="page-head-title" data-k="discover_title">Discover Stocks</div><div class="page-head-sub" data-k="discover_sub">Invest any amount from ₹10 — you own a fraction</div></div>
+  <div class="sw"><span class="si">🔍</span><input type="text" id="search-inp" data-k="search_ph" placeholder="Search by name or what they make…" oninput="filterStocks(this.value)"></div>
+  <div class="frow">
+    <div class="chip active" onclick="setFilter(this,'all')" data-k="all">All</div>
+    <div class="chip" onclick="setFilter(this,'tech')" data-k="tech">💻 Tech</div>
+    <div class="chip" onclick="setFilter(this,'fmcg')" data-k="consumer">🛒 Consumer</div>
+    <div class="chip" onclick="setFilter(this,'finance')" data-k="finance">🏦 Finance</div>
+    <div class="chip" onclick="setFilter(this,'auto')" data-k="auto">🚗 Auto</div>
   </div>
-
-  <div class="search-bar">
-    <span>🔍</span>
-    <input type="text" placeholder="Search by company name or what they do…" oninput="filterStocks(this.value)">
-  </div>
-
-  <div class="filter-row">
-    <div class="filter-chip active" onclick="setFilter(this,'all')">All Stocks</div>
-    <div class="filter-chip" onclick="setFilter(this,'tech')">💻 Technology</div>
-    <div class="filter-chip" onclick="setFilter(this,'fmcg')">🛒 Consumer</div>
-    <div class="filter-chip" onclick="setFilter(this,'finance')">🏦 Finance</div>
-    <div class="filter-chip" onclick="setFilter(this,'auto')">🚗 Auto</div>
-    <div class="filter-chip" onclick="setFilter(this,'energy')">⚡ Energy</div>
-  </div>
-
-  <div class="stock-grid" id="stock-grid">
-    <!-- Cards injected by JS -->
-  </div>
-
-</div>
+  <div class="sgrid" id="sgrid"></div>
 </div>
 
-<!-- ══════════════ PAGE: ROBO ADVISOR ══════════════ -->
+<!-- ══════════════════════════════════════════════════════════
+     PAGE: ROBO
+══════════════════════════════════════════════════════════ -->
 <div class="page" id="page-robo">
-<div class="container">
-
-  <div class="robo-hero">
-    <div class="robo-title">🤖 Your Robo Advisor</div>
-    <div class="robo-sub">Tell me your goal and risk comfort. I'll build a portfolio of fractional shares for you — automatically.</div>
+  <div class="robo-hdr">
+    <div style="font-size:20px;font-weight:700;margin-bottom:6px" data-k="robo_title">🤖 Robo Advisor</div>
+    <div style="font-size:13px;opacity:.8;max-width:320px;line-height:1.5" data-k="robo_sub">Tell me your risk comfort — I'll suggest the best baskets for you.</div>
   </div>
-
-  <!-- Risk Profile -->
-  <div class="section-title">How do you feel about risk?</div>
-  <div class="tip-box">
-    <div class="tip-emoji">🧘</div>
-    <div class="tip-text">Risk = how okay are you if your investment drops temporarily? Higher risk can mean bigger gains over time, but also bigger short-term dips.</div>
+  <div style="padding:0 16px;margin-bottom:10px;font-size:13px;font-weight:700" data-k="risk_label">How okay are you if your money dips temporarily?</div>
+  <div style="margin:0 16px 14px;background:var(--prd);border-radius:var(--r);padding:11px 13px;font-size:12px;color:var(--tx2);line-height:1.6" data-k="risk_explain">Higher risk = bigger possible gains, but more ups and downs. Lower risk = slower but steadier.</div>
+  <div class="rgrid">
+    <div class="ropt" onclick="selRisk(this)"><div class="ri">🛡️</div><div class="rn" data-k="safe">Safe</div><div class="rd" data-k="safe_desc">Slow, steady growth</div></div>
+    <div class="ropt sel" onclick="selRisk(this)"><div class="ri">⚖️</div><div class="rn" data-k="balanced">Balanced</div><div class="rd" data-k="bal_desc">Mix of safety &amp; growth</div></div>
+    <div class="ropt" onclick="selRisk(this)"><div class="ri">🚀</div><div class="rn" data-k="growth">Growth</div><div class="rd" data-k="grow_desc">More ups/downs, bigger gains</div></div>
   </div>
-  <div class="risk-cards">
-    <div class="risk-card" onclick="selectRisk(this,'safe')">
-      <div class="risk-emoji">🛡️</div>
-      <div class="risk-name">Play It Safe</div>
-      <div class="risk-desc">Stable companies, slow steady growth</div>
-    </div>
-    <div class="risk-card selected" onclick="selectRisk(this,'balanced')">
-      <div class="risk-emoji">⚖️</div>
-      <div class="risk-name">Balanced</div>
-      <div class="risk-desc">Mix of safety and growth</div>
-    </div>
-    <div class="risk-card" onclick="selectRisk(this,'growth')">
-      <div class="risk-emoji">🚀</div>
-      <div class="risk-name">Go for Growth</div>
-      <div class="risk-desc">Higher ups and downs, bigger potential</div>
-    </div>
-  </div>
-
-  <!-- Goal selector -->
-  <div class="section-title">What's your goal?</div>
-  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px">
-    <div class="filter-chip active" onclick="toggleGoal(this)">💍 Saving for something big</div>
-    <div class="filter-chip" onclick="toggleGoal(this)">📈 Long-term wealth</div>
-    <div class="filter-chip" onclick="toggleGoal(this)">🎓 Education fund</div>
-    <div class="filter-chip" onclick="toggleGoal(this)">🏠 Future home</div>
-  </div>
-
-  <!-- Recommended Baskets -->
-  <div class="section-title">Recommended Baskets for You</div>
-
-  <div class="basket-card" onclick="showToast('🤖 Robo has added India\'s Finest to your watchlist!')">
-    <div class="basket-icon">🇮🇳</div>
-    <div style="flex:1">
-      <div class="basket-name">India's Finest</div>
-      <div class="basket-desc">Top 5 blue-chip stocks — MRF, Asian Paints, Nestlé, Titan, Bajaj Finance</div>
-      <div style="margin-top:6px;display:flex;gap:6px">
-        <span class="tag tag-green">Low Risk</span>
-        <span class="tag tag-blue">₹500 min</span>
-      </div>
-    </div>
-    <div class="basket-perf">
-      <div class="basket-ret">+18.4%</div>
-      <div class="basket-period">Last 1 year</div>
-    </div>
-  </div>
-
-  <div class="basket-card" onclick="showToast('🤖 Robo has added Dividend Champions to your watchlist!')">
-    <div class="basket-icon">💰</div>
-    <div style="flex:1">
-      <div class="basket-name">Dividend Champions</div>
-      <div class="basket-desc">Companies that pay you regularly — ITC, Coal India, ONGC, NMDC, Power Grid</div>
-      <div style="margin-top:6px;display:flex;gap:6px">
-        <span class="tag tag-green">Very Low Risk</span>
-        <span class="tag tag-blue">₹250 min</span>
-      </div>
-    </div>
-    <div class="basket-perf">
-      <div class="basket-ret">+11.2%</div>
-      <div class="basket-period">Last 1 year</div>
-    </div>
-  </div>
-
-  <div class="basket-card" onclick="showToast('🤖 Robo has added Tech India to your watchlist!')">
-    <div class="basket-icon">💻</div>
-    <div style="flex:1">
-      <div class="basket-name">Tech India</div>
-      <div class="basket-desc">India's IT giants — TCS, Infosys, Wipro, HCL Tech, Tech Mahindra</div>
-      <div style="margin-top:6px;display:flex;gap:6px">
-        <span class="tag tag-yellow">Medium Risk</span>
-        <span class="tag tag-blue">₹500 min</span>
-      </div>
-    </div>
-    <div class="basket-perf">
-      <div class="basket-ret" style="color:#F59E0B">+24.7%</div>
-      <div class="basket-period">Last 1 year</div>
-    </div>
-  </div>
-
-  <div class="basket-card" onclick="showToast('🤖 Robo has added Green India to your watchlist!')">
-    <div class="basket-icon">🌿</div>
-    <div style="flex:1">
-      <div class="basket-name">Green India</div>
-      <div class="basket-desc">Clean energy future — Adani Green, Tata Power, NTPC, Greenko, ReNew</div>
-      <div style="margin-top:6px;display:flex;gap:6px">
-        <span class="tag tag-red">Higher Risk</span>
-        <span class="tag tag-blue">₹500 min</span>
-      </div>
-    </div>
-    <div class="basket-perf">
-      <div class="basket-ret" style="color:var(--green)">+31.5%</div>
-      <div class="basket-period">Last 1 year</div>
-    </div>
-  </div>
-
-  <div style="margin-top:6px">
-    <button class="btn btn-primary btn-block" onclick="showToast('🤖 Robo Advisor is building your custom portfolio...')">🤖 Build My Custom Portfolio</button>
-  </div>
-
-</div>
+  <div style="padding:0 16px;margin-bottom:10px;font-size:13px;font-weight:700" data-k="baskets_label">Recommended Baskets</div>
+  <div class="basket" onclick="showToast('🤖 Added to watchlist!')"><div class="basket-ic">🇮🇳</div><div style="flex:1"><div class="basket-nm" data-k="india_finest">India's Finest</div><div class="basket-ds" data-k="india_finest_stocks">MRF, Asian Paints, Nestlé, Titan, Bajaj Finance</div><div style="margin-top:6px;display:flex;gap:6px"><span class="tag-g" data-k="low_risk">Low Risk</span><span class="tag-b">₹500 min</span></div></div><div style="text-align:right;flex-shrink:0"><div class="basket-ret">+18.4%</div><div class="basket-per" data-k="one_year">1 year</div></div></div>
+  <div class="basket" onclick="showToast('🤖 Added to watchlist!')"><div class="basket-ic">💰</div><div style="flex:1"><div class="basket-nm" data-k="div_champs">Dividend Champions</div><div class="basket-ds" data-k="div_desc">Companies that pay you just for holding shares</div><div style="margin-top:6px;display:flex;gap:6px"><span class="tag-g" data-k="vlow_risk">Very Low Risk</span><span class="tag-b">₹250 min</span></div></div><div style="text-align:right;flex-shrink:0"><div class="basket-ret">+11.2%</div><div class="basket-per" data-k="one_year">1 year</div></div></div>
+  <div class="basket" onclick="showToast('🤖 Added to watchlist!')"><div class="basket-ic">💻</div><div style="flex:1"><div class="basket-nm" data-k="tech_india">Tech India</div><div class="basket-ds">TCS, Infosys, Wipro, HCL Tech, Tech Mahindra</div><div style="margin-top:6px;display:flex;gap:6px"><span class="tag-y" data-k="med_risk">Medium Risk</span><span class="tag-b">₹500 min</span></div></div><div style="text-align:right;flex-shrink:0"><div class="basket-ret" style="color:var(--gd)">+24.7%</div><div class="basket-per" data-k="one_year">1 year</div></div></div>
+  <div style="padding:14px 16px 0"><button class="btn btn-p btn-bl" onclick="showToast('🤖 Building your custom portfolio…')" data-k="build_portfolio">🤖 Build My Custom Portfolio</button></div>
 </div>
 
-<!-- ══════════════ PAGE: SPARE CHANGE ══════════════ -->
+<!-- ══════════════════════════════════════════════════════════
+     PAGE: SPARE CHANGE
+══════════════════════════════════════════════════════════ -->
 <div class="page" id="page-sparechange">
-<div class="container">
-
-  <div class="sc-hero">
-    <div class="sc-title">🪙 Spare Change Investing</div>
-    <div class="sc-sub">Every purchase you make, we round up to the nearest ₹10 and invest the difference for you.</div>
+  <div class="sc-hdr">
+    <div style="font-size:20px;font-weight:700;margin-bottom:6px" data-k="sc_title">🪙 Spare Change Investing</div>
+    <div style="font-size:13px;opacity:.8;max-width:320px;line-height:1.5" data-k="sc_sub">Every UPI payment gets rounded up. The extra is invested automatically.</div>
+  </div>
+  <div class="sstrip">
+    <div class="sbox"><div class="sv">₹312</div><div class="sl" data-k="sc_invested">Spare Invested</div></div>
+    <div class="sbox"><div class="sv" style="color:var(--gn)">+₹28</div><div class="sl" data-k="sc_returns">Returns</div></div>
+    <div class="sbox"><div class="sv">48</div><div class="sl" data-k="sc_txns">Round-Ups</div></div>
   </div>
 
-  <!-- Stats -->
-  <div class="stats-row" style="margin-bottom:20px">
-    <div class="card stat-card">
-      <div class="stat-val">₹312</div>
-      <div class="stat-lbl">Total Invested</div>
-    </div>
-    <div class="card stat-card">
-      <div class="stat-val">48</div>
-      <div class="stat-lbl">Transactions Rounded</div>
-    </div>
-    <div class="card stat-card">
-      <div class="stat-val" style="color:var(--green)">+₹28</div>
-      <div class="stat-lbl">Returns So Far</div>
+  <!-- Fractional vs Spare comparison -->
+  <div class="pad16 mb14">
+    <div class="card">
+      <div class="sec-t" data-k="sc_breakdown">Fractional vs Spare Change</div>
+      <div style="display:flex;gap:8px;margin-bottom:10px">
+        <div style="flex:1;background:var(--prd);border-radius:var(--r);padding:12px;text-align:center">
+          <div style="font-size:10px;font-weight:700;color:var(--pr);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px" data-k="frac_invest">Fractional</div>
+          <div style="font-size:20px;font-weight:700">₹7,288</div>
+          <div style="font-size:10px;color:var(--tx2);margin-top:1px" data-k="frac_sub">You chose these stocks</div>
+          <div style="font-size:12px;font-weight:700;color:var(--gn);margin-top:4px">+₹620 (+9.3%)</div>
+        </div>
+        <div style="flex:1;background:var(--gdd);border-radius:var(--r);padding:12px;text-align:center">
+          <div style="font-size:10px;font-weight:700;color:var(--gd);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px" data-k="spare_invest">Spare Change</div>
+          <div style="font-size:20px;font-weight:700">₹312</div>
+          <div style="font-size:10px;color:var(--tx2);margin-top:1px" data-k="spare_sub">Auto-invested for you</div>
+          <div style="font-size:12px;font-weight:700;color:var(--gn);margin-top:4px">+₹28 (+9.0%)</div>
+        </div>
+      </div>
+      <div style="background:var(--sf2);border-radius:7px;padding:9px 11px;font-size:12px;color:var(--tx2);line-height:1.6" data-k="sc_tip">💡 At this pace, spare change will auto-add ~₹900/month to your portfolio without you doing anything.</div>
     </div>
   </div>
 
   <!-- Settings -->
-  <div class="card" style="margin-bottom:20px">
-    <div class="card-title">Settings</div>
-    <div class="divider" style="margin-top:10px"></div>
-    <div class="sc-toggle">
-      <div>
-        <div class="sc-toggle-label">Round-Up Investing</div>
-        <div class="sc-toggle-sub">Auto-invest spare change from UPI transactions</div>
-      </div>
-      <div class="toggle on" id="toggle-roundup" onclick="toggleSwitch(this)"></div>
-    </div>
-    <div class="divider"></div>
-    <div class="sc-toggle">
-      <div>
-        <div class="sc-toggle-label">Multiply Round-Ups</div>
-        <div class="sc-toggle-sub">Invest 2× the spare change for faster growth</div>
-      </div>
-      <div class="toggle" id="toggle-multiply" onclick="toggleSwitch(this)"></div>
-    </div>
-    <div class="divider"></div>
-    <div style="padding:12px 0">
-      <div class="sc-toggle-label" style="margin-bottom:8px">Invest into</div>
-      <div style="display:flex;gap:8px">
-        <div class="filter-chip active">India's Finest basket</div>
-        <div class="filter-chip">My top holding</div>
-        <div class="filter-chip">Custom</div>
-      </div>
+  <div class="pad16 mb14">
+    <div class="card">
+      <div class="sec-t" data-k="sc_settings">Settings</div>
+      <div class="tog-row"><div><div style="font-size:13px;font-weight:700" data-k="roundup_toggle">Round-Up Investing</div><div style="font-size:11px;color:var(--tx2);margin-top:1px" data-k="roundup_sub">Auto-invest from every UPI payment</div></div><div class="tgl on" onclick="this.classList.toggle('on')"></div></div>
+      <div class="tog-row"><div><div style="font-size:13px;font-weight:700" data-k="double_toggle">2× Multiplier</div><div style="font-size:11px;color:var(--tx2);margin-top:1px" data-k="double_sub">Double your spare change amount</div></div><div class="tgl" onclick="this.classList.toggle('on')"></div></div>
+      <div class="divd"></div>
+      <div style="font-size:12px;font-weight:700;color:var(--tx2);margin-bottom:7px" data-k="invest_into">Invest spare change into:</div>
+      <div class="frow" style="padding:0;margin-bottom:0"><div class="chip active" data-k="india_finest">India's Finest</div><div class="chip" data-k="top_holding">My top holding</div></div>
     </div>
   </div>
 
-  <!-- Recent Transactions -->
-  <div class="section-title">Recent Round-Ups</div>
-  <div class="card">
-    <div class="txn-row">
-      <div class="txn-icon">☕</div>
-      <div>
-        <div class="txn-name">Café Coffee Day</div>
-        <div class="txn-date">Today, 9:14 AM</div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amt">₹143</div>
-        <div class="txn-roundup">+₹7 invested 🌱</div>
-      </div>
-    </div>
-    <div class="txn-row">
-      <div class="txn-icon">🛒</div>
-      <div>
-        <div class="txn-name">DMart</div>
-        <div class="txn-date">Yesterday, 7:32 PM</div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amt">₹867</div>
-        <div class="txn-roundup">+₹3 invested 🌱</div>
-      </div>
-    </div>
-    <div class="txn-row">
-      <div class="txn-icon">🚕</div>
-      <div>
-        <div class="txn-name">Ola Ride</div>
-        <div class="txn-date">Yesterday, 4:15 PM</div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amt">₹212</div>
-        <div class="txn-roundup">+₹8 invested 🌱</div>
-      </div>
-    </div>
-    <div class="txn-row">
-      <div class="txn-icon">🍕</div>
-      <div>
-        <div class="txn-name">Swiggy Order</div>
-        <div class="txn-date">22 Mar, 8:40 PM</div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amt">₹349</div>
-        <div class="txn-roundup">+₹1 invested 🌱</div>
-      </div>
-    </div>
-    <div class="txn-row">
-      <div class="txn-icon">⛽</div>
-      <div>
-        <div class="txn-name">HPCL Fuel</div>
-        <div class="txn-date">21 Mar, 11:20 AM</div>
-      </div>
-      <div class="txn-right">
-        <div class="txn-amt">₹2,156</div>
-        <div class="txn-roundup">+₹4 invested 🌱</div>
-      </div>
+  <!-- Recent -->
+  <div class="pad16">
+    <div class="sec-t" data-k="recent_roundups">Recent Round-Ups</div>
+    <div class="card">
+      <div class="txr"><div class="tx-ic">☕</div><div style="flex:1"><div class="tx-n">Café Coffee Day</div><div class="tx-d" data-k="today_time">Today, 9:14 AM</div></div><div class="tx-r"><div class="tx-a">₹143</div><div class="tx-ru">+₹7 invested 🌱</div></div></div>
+      <div class="txr"><div class="tx-ic">🛒</div><div style="flex:1"><div class="tx-n">DMart</div><div class="tx-d" data-k="yesterday">Yesterday</div></div><div class="tx-r"><div class="tx-a">₹867</div><div class="tx-ru">+₹3 invested 🌱</div></div></div>
+      <div class="txr"><div class="tx-ic">🚕</div><div style="flex:1"><div class="tx-n">Ola Ride</div><div class="tx-d" data-k="yesterday">Yesterday</div></div><div class="tx-r"><div class="tx-a">₹212</div><div class="tx-ru">+₹8 invested 🌱</div></div></div>
+      <div class="txr"><div class="tx-ic">🍕</div><div style="flex:1"><div class="tx-n">Swiggy</div><div class="tx-d">22 Mar</div></div><div class="tx-r"><div class="tx-a">₹349</div><div class="tx-ru">+₹1 invested 🌱</div></div></div>
+      <div class="txr"><div class="tx-ic">⛽</div><div style="flex:1"><div class="tx-n">HPCL Fuel</div><div class="tx-d">21 Mar</div></div><div class="tx-r"><div class="tx-a">₹2,156</div><div class="tx-ru">+₹4 invested 🌱</div></div></div>
     </div>
   </div>
-
-  <div class="tip-box" style="margin-top:16px">
-    <div class="tip-emoji">🌱</div>
-    <div class="tip-text">At this rate, you'll automatically invest about ₹900/month just from spare change — without thinking about it!</div>
-  </div>
-
-</div>
 </div>
 
-<!-- ══════════════ PAGE: STOCK DETAIL ══════════════ -->
+<!-- ══════════════════════════════════════════════════════════
+     PAGE: STOCK DETAIL
+══════════════════════════════════════════════════════════ -->
 <div class="page" id="page-stock">
-<div class="container">
-  <div style="margin-bottom:12px">
-    <button class="btn btn-ghost btn-sm" onclick="showPage('discover')">← Back</button>
+  <div class="wrap">
+    <button class="btn btn-g" style="margin-bottom:14px;font-size:12px;padding:7px 14px" onclick="showPage('discover')">← <span data-k="back">Back</span></button>
   </div>
-
-  <div class="stock-detail-header" id="sdh">
+  <div class="sdh">
     <div class="sdh-top">
       <div class="sdh-logo" id="sdh-logo">MR</div>
-      <div>
-        <div class="sdh-name" id="sdh-name">MRF Ltd</div>
-        <div class="sdh-sector" id="sdh-sector">Tyres · NSE: MRF</div>
+      <div><div style="font-size:17px;font-weight:700" id="sdh-name">MRF Ltd</div><div style="font-size:11px;color:var(--tx3)" id="sdh-sector">Tyres · NSE: MRF</div></div>
+    </div>
+    <div class="sdh-pr" id="sdh-pr">₹1,31,450</div>
+    <div class="sdh-ch" id="sdh-ch" style="background:var(--gnd);color:var(--gn)">📈 +₹1,240 (+0.95%)</div>
+  </div>
+  <div class="plain-box">
+    <div class="plain-t" data-k="what_they_do">🤔 What do they do?</div>
+    <div class="plain-tx" id="sdh-desc">MRF makes tyres for cars, trucks, and bikes.</div>
+  </div>
+  <div class="chart-wrap">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+      <div style="font-size:13px;font-weight:700" data-k="price_history">Price History</div>
+      <div class="ctabs">
+        <button class="ctab active" onclick="changeChart(this,'1W')">1W</button>
+        <button class="ctab" onclick="changeChart(this,'1M')">1M</button>
+        <button class="ctab" onclick="changeChart(this,'3M')">3M</button>
+        <button class="ctab" onclick="changeChart(this,'1Y')">1Y</button>
       </div>
     </div>
-    <div class="sdh-price" id="sdh-price">₹1,31,450</div>
-    <div class="sdh-change" id="sdh-change">📈 +₹1,240 (+0.95%) today</div>
-  </div>
-
-  <!-- Plain English what-is -->
-  <div class="what-is" id="sdh-desc">
-    <div class="what-is-title">🤔 What does this company do?</div>
-    <div class="what-is-text" id="sdh-desc-text">MRF makes the tyres on most cars, trucks, and two-wheelers in India. You've probably seen their yellow logo on the road. They're the most expensive share on the Indian stock market — but with FractoVest, you can own ₹500 worth of MRF instantly.</div>
-  </div>
-
-  <!-- Chart -->
-  <div class="chart-container">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-      <div style="font-weight:900;font-size:15px">Price History</div>
-      <div class="chart-tabs">
-        <button class="chart-tab active" onclick="changeChart(this,'1W')">1W</button>
-        <button class="chart-tab" onclick="changeChart(this,'1M')">1M</button>
-        <button class="chart-tab" onclick="changeChart(this,'3M')">3M</button>
-        <button class="chart-tab" onclick="changeChart(this,'1Y')">1Y</button>
-      </div>
-    </div>
-    <canvas id="stockChart" height="180"></canvas>
-    <div style="display:flex;justify-content:space-between;margin-top:8px">
-      <span style="font-size:12px;color:var(--muted);font-weight:700" id="chart-low">Low: —</span>
-      <span style="font-size:12px;font-weight:800;color:var(--green)" id="chart-ret">Return: —</span>
-      <span style="font-size:12px;color:var(--muted);font-weight:700" id="chart-high">High: —</span>
+    <canvas id="stockChart" height="160"></canvas>
+    <div style="display:flex;justify-content:space-between;margin-top:6px">
+      <span style="font-size:10px;color:var(--tx3);font-weight:600" id="ch-low">—</span>
+      <span style="font-size:11px;font-weight:700" id="ch-ret">—</span>
+      <span style="font-size:10px;color:var(--tx3);font-weight:600" id="ch-high">—</span>
     </div>
   </div>
-
-  <!-- Key Stats -->
-  <div class="stock-info-grid">
-    <div class="info-item">
-      <div class="info-label">
-        <span class="tooltip-wrap">Market Cap <span class="tooltip-icon">?</span><span class="tooltip-box">Total value of all shares in the company. Bigger = more stable usually.</span></span>
-      </div>
-      <div class="info-val" id="sdh-mcap">₹55,700 Cr</div>
-    </div>
-    <div class="info-item">
-      <div class="info-label">
-        <span class="tooltip-wrap">P/E Ratio <span class="tooltip-icon">?</span><span class="tooltip-box">How expensive the stock is relative to earnings. Lower = cheaper. Average market P/E is ~22.</span></span>
-      </div>
-      <div class="info-val" id="sdh-pe">29.4x</div>
-    </div>
-    <div class="info-item">
-      <div class="info-label">
-        <span class="tooltip-wrap">1-Year Return <span class="tooltip-icon">?</span><span class="tooltip-box">How much ₹100 invested 1 year ago would be worth today.</span></span>
-      </div>
-      <div class="info-val" style="color:var(--green)" id="sdh-1yr">+14.2%</div>
-    </div>
-    <div class="info-item">
-      <div class="info-label">
-        <span class="tooltip-wrap">Dividend <span class="tooltip-icon">?</span><span class="tooltip-box">Money the company pays you just for holding the share.</span></span>
-      </div>
-      <div class="info-val" id="sdh-div">₹3/share</div>
-    </div>
+  <div class="igrid">
+    <div class="ibox"><div class="ilbl" data-k="market_cap">Market Cap</div><div class="ival" id="sdh-mc">—</div></div>
+    <div class="ibox"><div class="ilbl" data-k="pe_ratio">P/E Ratio</div><div class="ival" id="sdh-pe">—</div></div>
+    <div class="ibox"><div class="ilbl" data-k="yr1_return">1-Year Return</div><div class="ival" id="sdh-yr">—</div></div>
+    <div class="ibox"><div class="ilbl" data-k="dividend">Dividend</div><div class="ival" id="sdh-div">—</div></div>
   </div>
-
-  <!-- Invest widget -->
-  <div class="card" id="invest-widget">
-    <div class="card-title" style="margin-bottom:14px">Invest in <span id="invest-name">MRF</span></div>
-    <div class="amount-input-wrap">
-      <div class="amount-label">Enter Amount</div>
-      <input class="amount-input" id="invest-amount" type="number" value="500" oninput="updateFraction()">
-      <div class="amount-frac" id="frac-display">= 0.0038 shares of MRF</div>
+  <div class="inv-box">
+    <div style="font-size:12px;font-weight:700;color:var(--tx2);margin-bottom:10px" data-k="invest_in">Invest in <span id="inv-nm">MRF</span></div>
+    <div class="amt-wrap">
+      <div class="amt-lbl" data-k="enter_amount">Enter Amount (₹)</div>
+      <input class="amt-inp" id="inv-amt" type="number" value="500" oninput="updFrac()">
+      <div class="amt-fr" id="frac-d">= 0.0038 shares</div>
     </div>
     <div class="presets">
-      <div class="preset" onclick="setAmount(100)">₹100</div>
-      <div class="preset" onclick="setAmount(500)">₹500</div>
-      <div class="preset" onclick="setAmount(1000)">₹1,000</div>
-      <div class="preset" onclick="setAmount(5000)">₹5,000</div>
+      <div class="preset" onclick="setAmt(100)">₹100</div>
+      <div class="preset" onclick="setAmt(500)">₹500</div>
+      <div class="preset" onclick="setAmt(1000)">₹1,000</div>
+      <div class="preset" onclick="setAmt(5000)">₹5,000</div>
     </div>
-    <div class="invest-info">
-      <div class="invest-info-item"><span class="invest-info-label">You pay</span><br><span class="invest-info-val" id="pay-val">₹500</span></div>
-      <div class="invest-info-item" style="text-align:center"><span class="invest-info-label">Fraction</span><br><span class="invest-info-val" id="frac-val">0.0038 shares</span></div>
-      <div class="invest-info-item" style="text-align:right"><span class="invest-info-label">Platform fee</span><br><span class="invest-info-val">₹1.25 (0.25%)</span></div>
+    <div class="inv-meta">
+      <div><div class="im-lbl" data-k="you_pay">You pay</div><div class="im-val" id="pay-v">₹500</div></div>
+      <div style="text-align:center"><div class="im-lbl" data-k="fraction">Fraction</div><div class="im-val" id="frac-v">0.0038 shares</div></div>
+      <div style="text-align:right"><div class="im-lbl" data-k="fee">Fee (0.25%)</div><div class="im-val">₹1.25</div></div>
     </div>
-    <button class="btn btn-primary btn-block" onclick="placeOrder()">Invest ₹<span id="btn-amt">500</span> in <span id="btn-stock">MRF</span></button>
-    <div style="text-align:center;margin-top:10px;font-size:12px;color:var(--muted);font-weight:700">Your ₹12,480 wallet has enough ✓</div>
+    <button class="btn btn-p btn-bl" onclick="placeOrder()" data-k="invest_now_btn">Invest Now →</button>
   </div>
-
-</div>
 </div>
 
-<!-- TOAST -->
-<div class="toast" id="toast">
-  <span id="toast-msg">Done!</span>
+<!-- ══ POPUP ═════════════════════════════════════════════ -->
+<div class="pop-ov" id="pop-ov" onclick="closePop(event)">
+  <div class="popup" id="popup">
+    <div class="pop-drag"></div>
+  </div>
 </div>
 
-<!-- ══════════ JS ══════════ -->
+<!-- ══ TOAST ══════════════════════════════════════════════ -->
+<div class="toast" id="toast"><span id="toast-msg">✅ Done!</span></div>
+
+<!-- ══════════════════════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════════════════════ -->
 <script>
-const STOCKS = [
-  { id:'MRF', name:'MRF Ltd', sector:'auto', sectorLabel:'Auto & Tyres', symbol:'NSE: MRF',
-    price:131450, change:1240, changePct:0.95, logo:'MR', logoColor:'#FFF3E0', logoText:'#E65100',
-    mcap:'₹55,700 Cr', pe:'29.4x', yr1:'+14.2%', yr1c:'green', div:'₹3/share',
-    desc:'MRF makes the tyres on most cars, trucks, and two-wheelers in India. You\'ve probably seen their yellow logo on the road. They\'re the most expensive share on the Indian stock market — but with FractoVest, you can own ₹500 worth instantly.' },
-  { id:'PAGE', name:'Page Industries', sector:'fmcg', sectorLabel:'Consumer Goods', symbol:'NSE: PAGEIND',
-    price:41200, change:-320, changePct:-0.77, logo:'PG', logoColor:'#E8F5E9', logoText:'#2E7D32',
-    mcap:'₹45,800 Cr', pe:'71.2x', yr1:'+9.8%', yr1c:'green', div:'₹500/share',
-    desc:'Page Industries makes Jockey underwear and sportswear in India. They are the exclusive licensee of Jockey International. Almost every gym-goer in India wears their products.' },
-  { id:'HONAUT', name:'Honeywell Auto', sector:'tech', sectorLabel:'Industrial Tech', symbol:'NSE: HONAUT',
-    price:35800, change:420, changePct:1.18, logo:'HW', logoColor:'#E3F2FD', logoText:'#1565C0',
-    mcap:'₹31,700 Cr', pe:'44.1x', yr1:'+22.3%', yr1c:'green', div:'₹80/share',
-    desc:'Honeywell Automation makes industrial sensors, building controls, and safety equipment for factories across India. They power the technology inside many of the buildings and factories you use.' },
-  { id:'NESTLEIND', name:'Nestlé India', sector:'fmcg', sectorLabel:'Consumer Goods', symbol:'NSE: NESTLEIND',
-    price:24500, change:-180, changePct:-0.73, logo:'NE', logoColor:'#FCE4EC', logoText:'#880E4F',
-    mcap:'₹2,36,100 Cr', pe:'77.3x', yr1:'+5.1%', yr1c:'green', div:'₹270/share',
-    desc:'Nestlé makes Maggi noodles, KitKat, Munch, Milkmaid and dozens of other everyday foods. Their products are in almost every Indian household. They\'re one of the most reliable "sleep well at night" stocks.' },
-  { id:'TITAN', name:'Titan Company', sector:'fmcg', sectorLabel:'Consumer Goods', symbol:'NSE: TITAN',
-    price:3280, change:42, changePct:1.30, logo:'TT', logoColor:'#F3E5F5', logoText:'#6A1B9A',
-    mcap:'₹2,91,000 Cr', pe:'88.6x', yr1:'+18.7%', yr1c:'green', div:'₹11/share',
-    desc:'Titan makes Tanishq jewellery, Titan watches, Fastrack, and Taneira sarees. They turn aspirational purchases into a stock you can own. Backed by Tata Group.' },
-  { id:'TCS', name:'TCS', sector:'tech', sectorLabel:'IT Services', symbol:'NSE: TCS',
-    price:3950, change:28, changePct:0.71, logo:'TC', logoColor:'#E0F2F1', logoText:'#00695C',
-    mcap:'₹14,30,000 Cr', pe:'27.1x', yr1:'+8.4%', yr1c:'green', div:'₹28/share',
-    desc:'Tata Consultancy Services is India\'s largest IT company. They write software for banks, airlines, and hospitals across the world. One of the safest large-cap tech stocks in India.' },
-  { id:'BAJFINANCE', name:'Bajaj Finance', sector:'finance', sectorLabel:'NBFC / Finance', symbol:'NSE: BAJFINANCE',
-    price:7200, change:-95, changePct:-1.30, logo:'BF', logoColor:'#FFF8E1', logoText:'#F57F17',
-    mcap:'₹4,34,000 Cr', pe:'28.4x', yr1:'+12.9%', yr1c:'green', div:'₹36/share',
-    desc:'Bajaj Finance gives loans for phones, fridges, two-wheelers, and home improvements. If you\'ve ever seen "0% EMI" at a store, they\'re probably behind it. India\'s most loved consumer lender.' },
-  { id:'HDFCBANK', name:'HDFC Bank', sector:'finance', sectorLabel:'Private Bank', symbol:'NSE: HDFCBANK',
-    price:1670, change:14, changePct:0.84, logo:'HD', logoColor:'#E8F5E9', logoText:'#1B5E20',
-    mcap:'₹12,70,000 Cr', pe:'18.2x', yr1:'+3.2%', yr1c:'green', div:'₹19/share',
-    desc:'HDFC Bank is India\'s largest private bank. Reliable, well-run, and backed by decades of trust. A staple in most long-term portfolios. You\'ve probably used their ATM.' },
-  { id:'ASIANPAINT', name:'Asian Paints', sector:'fmcg', sectorLabel:'Consumer Goods', symbol:'NSE: ASIANPAINT',
-    price:2490, change:-22, changePct:-0.88, logo:'AP', logoColor:'#FFF3E0', logoText:'#BF360C',
-    mcap:'₹2,38,000 Cr', pe:'50.2x', yr1:'-8.3%', yr1c:'red', div:'₹22/share',
-    desc:'Asian Paints colors more than half the walls in India. They also make putty, waterproofing, and home décor products. A dominant brand with massive distribution.' },
-  { id:'INFY', name:'Infosys', sector:'tech', sectorLabel:'IT Services', symbol:'NSE: INFY',
-    price:1820, change:31, changePct:1.73, logo:'IN', logoColor:'#E8EAF6', logoText:'#283593',
-    mcap:'₹7,56,000 Cr', pe:'23.6x', yr1:'+11.5%', yr1c:'green', div:'₹21/share',
-    desc:'Infosys is India\'s second-largest IT company. They build digital platforms for banks, governments, and companies across the world. A classic long-term wealth compounder.' },
+// ── STOCK DATA ────────────────────────────────────────────
+const STOCKS=[
+  {id:'MRF',nm:'MRF Ltd',sec:'auto',sl:'Tyres · NSE: MRF',pr:131450,ch:1240,pct:.95,logo:'MR',lb:'#FFF3E0',lt:'#E65100',mc:'₹55,700 Cr',pe:'29.4x',yr:'+14.2%',yrc:true,div:'₹3/share',
+    desc:{en:"MRF makes tyres for cars, trucks, and two-wheelers across India. You've seen their yellow logo on roads. India's most expensive share — but here ₹500 buys you a fraction instantly.",hi:"MRF भारत में गाड़ियों, ट्रकों और दोपहिया वाहनों के टायर बनाती है। यह भारत का सबसे महंगा शेयर है — लेकिन यहाँ ₹500 में हिस्सा मिलता है।",bn:"MRF ভারতে গাড়ি, ট্রাক এবং দুই চাকার যানবাহনের টায়ার তৈরি করে।",te:"MRF భారతదేశంలో కార్లు, ట్రక్కులు మరియు బైకులకు టైర్లు తయారు చేస్తుంది.",mr:"MRF भारतात गाड्या, ट्रक आणि दुचाकींसाठी टायर बनवते.",ta:"MRF இந்தியாவில் கார்கள், லாரிகள் மற்றும் இரு சக்கர வாகனங்களுக்கான டயர்கள் தயாரிக்கிறது.",gu:"MRF ભારતમાં કાર, ટ્રક અને બે-ચક્રો માટે ટાયર બનાવે છે.",kn:"MRF ಭಾರತದಲ್ಲಿ ಕಾರು, ಟ್ರಕ್ ಮತ್ತು ದ್ವಿಚಕ್ರ ವಾಹನಗಳಿಗೆ ಟೈರ್‌ಗಳನ್ನು ತಯಾರಿಸುತ್ತದೆ.",ml:"MRF ഇന്ത്യയിൽ കാർ, ട്രക്ക്, ഇരുചക്ര വാഹനങ്ങൾക്ക് ടയറുകൾ നിർമ്മിക്കുന്നു.",pa:"MRF ਭਾਰਤ ਵਿੱਚ ਕਾਰਾਂ, ਟਰੱਕਾਂ ਅਤੇ ਦੋ-ਪਹੀਆ ਵਾਹਨਾਂ ਲਈ ਟਾਇਰ ਬਣਾਉਂਦੀ ਹੈ।"}},
+  {id:'PAGE',nm:'Page Industries',sec:'fmcg',sl:'FMCG · NSE: PAGEIND',pr:41200,ch:-320,pct:-.77,logo:'PG',lb:'#E8F5E9',lt:'#2E7D32',mc:'₹45,800 Cr',pe:'71.2x',yr:'+9.8%',yrc:true,div:'₹500/share',
+    desc:{en:"Page Industries makes Jockey underwear and sportswear in India. Almost every gym-goer in India wears their products.",hi:"Page Industries भारत में Jockey के कपड़े बनाती है। लगभग हर जिम जाने वाला इनके कपड़े पहनता है।",bn:"Page Industries ভারতে Jockey পোশাক তৈরি করে।",te:"Page Industries భారతదేశంలో Jockey దుస్తులు తయారు చేస్తుంది.",mr:"Page Industries भारतात Jockey कपडे बनवते.",ta:"Page Industries இந்தியாவில் Jockey ஆடைகள் தயாரிக்கிறது.",gu:"Page Industries ભારતમાં Jockey કપડાં બનાવે છે.",kn:"Page Industries ಭಾರತದಲ್ಲಿ Jockey ಉಡುಪುಗಳನ್ನು ತಯಾರಿಸುತ್ತದೆ.",ml:"Page Industries ഇന്ത്യയിൽ Jockey വസ്ത്രങ്ങൾ നിർമ്മിക്കുന്നു.",pa:"Page Industries ਭਾਰਤ ਵਿੱਚ Jockey ਕੱਪੜੇ ਬਣਾਉਂਦੀ ਹੈ।"}},
+  {id:'HONAUT',nm:'Honeywell Auto',sec:'tech',sl:'Industrial · NSE: HONAUT',pr:35800,ch:420,pct:1.18,logo:'HW',lb:'#E3F2FD',lt:'#1565C0',mc:'₹31,700 Cr',pe:'44.1x',yr:'+22.3%',yrc:true,div:'₹80/share',
+    desc:{en:"Honeywell Automation makes sensors and controls for factories across India.",hi:"Honeywell Automation भारत की फैक्ट्रियों के लिए सेंसर और कंट्रोल सिस्टम बनाती है।",bn:"Honeywell কারখানার জন্য সেন্সর তৈরি করে।",te:"Honeywell కర్మాగారాలకు సెన్సర్లు తయారు చేస్తుంది.",mr:"Honeywell कारखान्यांसाठी सेन्सर बनवते.",ta:"Honeywell தொழிற்சாலைகளுக்கு சென்சார்கள் தயாரிக்கிறது.",gu:"Honeywell ફેક્ટ્રીઓ માટે સેન્સર બનાવે છે.",kn:"Honeywell ಕಾರ್ಖಾನೆಗಳಿಗೆ ಸೆನ್ಸರ್‌ಗಳನ್ನು ತಯಾರಿಸುತ್ತದೆ.",ml:"Honeywell ഫാക്ടറികൾക്കായി സെൻസറുകൾ നിർമ്മിക്കുന്നു.",pa:"Honeywell ਫੈਕਟਰੀਆਂ ਲਈ ਸੈਂਸਰ ਬਣਾਉਂਦੀ ਹੈ।"}},
+  {id:'NESTLEIND',nm:'Nestlé India',sec:'fmcg',sl:'Consumer · NSE: NESTLEIND',pr:24500,ch:-180,pct:-.73,logo:'NE',lb:'#FCE4EC',lt:'#880E4F',mc:'₹2,36,100 Cr',pe:'77.3x',yr:'+5.1%',yrc:true,div:'₹270/share',
+    desc:{en:"Nestlé makes Maggi noodles, KitKat, and Milkmaid — found in almost every Indian household.",hi:"Nestlé Maggi नूडल्स, KitKat और Milkmaid बनाती है — जो लगभग हर भारतीय घर में मिलते हैं।",bn:"Nestlé Maggi নুডলস এবং KitKat তৈরি করে।",te:"Nestlé Maggi నూడుల్స్ మరియు KitKat తయారు చేస్తుంది.",mr:"Nestlé Maggi नूडल्स आणि KitKat बनवते.",ta:"Nestlé மேகி நூடல்ஸ் மற்றும் KitKat தயாரிக்கிறது.",gu:"Nestlé Maggi નૂડલ્સ અને KitKat બનાવે છે.",kn:"Nestlé Maggi ನೂಡಲ್ಸ್ ಮತ್ತು KitKat ತಯಾರಿಸುತ್ತದೆ.",ml:"Nestlé Maggi നൂഡിൽസും KitKatഉം നിർമ്മിക്കുന്നു.",pa:"Nestlé Maggi ਨੂਡਲਜ਼ ਅਤੇ KitKat ਬਣਾਉਂਦੀ ਹੈ।"}},
+  {id:'TITAN',nm:'Titan Company',sec:'fmcg',sl:'Consumer · NSE: TITAN',pr:3280,ch:42,pct:1.30,logo:'TT',lb:'#F3E5F5',lt:'#6A1B9A',mc:'₹2,91,000 Cr',pe:'88.6x',yr:'+18.7%',yrc:true,div:'₹11/share',
+    desc:{en:"Titan makes Tanishq jewellery, Titan watches, and Fastrack. Backed by the Tata Group.",hi:"Titan, Tanishq ज्वेलरी, Titan घड़ियाँ और Fastrack बनाती है। यह Tata Group की कंपनी है।",bn:"Titan Tanishq গহনা এবং ঘড়ি তৈরি করে।",te:"Titan Tanishq నగలు మరియు వాచ్‌లు తయారు చేస్తుంది.",mr:"Titan Tanishq दागिने आणि घड्याळे बनवते.",ta:"Titan Tanishq நகைகள் மற்றும் கடிகாரங்கள் தயாரிக்கிறது.",gu:"Titan Tanishq દાગીના અને ઘડિયાળ બનાવે છે.",kn:"Titan Tanishq ಆಭರಣ ಮತ್ತು ಗಡಿಯಾರ ತಯಾರಿಸುತ್ತದೆ.",ml:"Titan Tanishq ആഭരണങ്ങളും ഘടികാരങ്ങളും നിർമ്മിക്കുന്നു.",pa:"Titan Tanishq ਗਹਿਣੇ ਅਤੇ ਘੜੀਆਂ ਬਣਾਉਂਦੀ ਹੈ।"}},
+  {id:'TCS',nm:'TCS',sec:'tech',sl:'IT Services · NSE: TCS',pr:3950,ch:28,pct:.71,logo:'TC',lb:'#E0F2F1',lt:'#00695C',mc:'₹14,30,000 Cr',pe:'27.1x',yr:'+8.4%',yrc:true,div:'₹28/share',
+    desc:{en:"TCS is India's largest IT company, writing software for banks and airlines worldwide.",hi:"TCS भारत की सबसे बड़ी IT कंपनी है। यह दुनिया भर के बैंकों के लिए सॉफ्टवेयर बनाती है।",bn:"TCS ভারতের সবচেয়ে বড় IT কোম্পানি।",te:"TCS భారతదేశంలో అతిపెద్ద IT కంపెనీ.",mr:"TCS भारतातील सर्वात मोठी IT कंपनी आहे.",ta:"TCS இந்தியாவின் மிகப்பெரிய IT நிறுவனம்.",gu:"TCS ભારતની સૌથી મોટી IT કંપની છે.",kn:"TCS ಭಾರತದ ಅತಿದೊಡ್ಡ IT ಕಂಪನಿ.",ml:"TCS ഇന്ത്യയിലെ ഏറ്റവും വലിയ IT കമ്പനി.",pa:"TCS ਭਾਰਤ ਦੀ ਸਭ ਤੋਂ ਵੱਡੀ IT ਕੰਪਨੀ ਹੈ।"}},
+  {id:'BAJFINANCE',nm:'Bajaj Finance',sec:'finance',sl:'NBFC · NSE: BAJFINANCE',pr:7200,ch:-95,pct:-1.30,logo:'BF',lb:'#FFF8E1',lt:'#F57F17',mc:'₹4,34,000 Cr',pe:'28.4x',yr:'+12.9%',yrc:true,div:'₹36/share',
+    desc:{en:"Bajaj Finance gives EMI loans for phones and fridges. If you've used '0% EMI', they're behind it.",hi:"Bajaj Finance फोन और फ्रिज के लिए EMI लोन देती है। '0% EMI' के पीछे यही होती है।",bn:"Bajaj Finance ফোন ও ফ্রিজের জন্য EMI লোন দেয়।",te:"Bajaj Finance ఫోన్లు మరియు ఫ్రిజ్‌లకు EMI లోన్లు ఇస్తుంది.",mr:"Bajaj Finance फोन आणि फ्रीजसाठी EMI कर्ज देते.",ta:"Bajaj Finance தொலைபேசிகள் மற்றும் குளிர்சாதனப்பெட்டிகளுக்கு EMI கடன் வழங்குகிறது.",gu:"Bajaj Finance ફોન અને ફ્રિજ માટે EMI લોન આપે છે.",kn:"Bajaj Finance ಫೋನ್ ಮತ್ತು ಫ್ರಿಡ್ಜ್‌ಗಳಿಗೆ EMI ಸಾಲ ನೀಡುತ್ತದೆ.",ml:"Bajaj Finance ഫോണിനും ഫ്രിഡ്ജിനും EMI വായ്പ നൽകുന്നു.",pa:"Bajaj Finance ਫੋਨ ਅਤੇ ਫਰਿੱਜ ਲਈ EMI ਕਰਜ਼ਾ ਦਿੰਦੀ ਹੈ।"}},
+  {id:'HDFCBANK',nm:'HDFC Bank',sec:'finance',sl:'Private Bank · NSE: HDFCBANK',pr:1670,ch:14,pct:.84,logo:'HD',lb:'#E8F5E9',lt:'#1B5E20',mc:'₹12,70,000 Cr',pe:'18.2x',yr:'+3.2%',yrc:true,div:'₹19/share',
+    desc:{en:"HDFC Bank is India's largest private bank — reliable and trusted for decades.",hi:"HDFC Bank भारत का सबसे बड़ा प्राइवेट बैंक है — दशकों से भरोसेमंद।",bn:"HDFC Bank ভারতের সবচেয়ে বড় প্রাইভেট ব্যাংক।",te:"HDFC Bank భారతదేశంలో అతిపెద్ద ప్రైవేట్ బ్యాంక్.",mr:"HDFC Bank भारतातील सर्वात मोठी खाजगी बँक आहे.",ta:"HDFC Bank இந்தியாவின் மிகப்பெரிய தனியார் வங்கி.",gu:"HDFC Bank ભારતની સૌથી મોટી ખાનગી બેંક છે.",kn:"HDFC Bank ಭಾರತದ ಅತಿದೊಡ್ಡ ಖಾಸಗಿ ಬ್ಯಾಂಕ್.",ml:"HDFC Bank ഇന്ത്യയിലെ ഏറ്റവും വലിയ സ്വകാര്യ ബാങ്ക്.",pa:"HDFC Bank ਭਾਰਤ ਦਾ ਸਭ ਤੋਂ ਵੱਡਾ ਪ੍ਰਾਈਵੇਟ ਬੈਂਕ ਹੈ।"}},
+  {id:'INFY',nm:'Infosys',sec:'tech',sl:'IT Services · NSE: INFY',pr:1820,ch:31,pct:1.73,logo:'IN',lb:'#E8EAF6',lt:'#283593',mc:'₹7,56,000 Cr',pe:'23.6x',yr:'+11.5%',yrc:true,div:'₹21/share',
+    desc:{en:"Infosys is India's second-largest IT company, building platforms for banks and governments worldwide.",hi:"Infosys भारत की दूसरी सबसे बड़ी IT कंपनी है। यह सरकारों के लिए डिजिटल प्लेटफॉर्म बनाती है।",bn:"Infosys ভারতের দ্বিতীয় বৃহত্তম IT কোম্পানি।",te:"Infosys భారతదేశంలో రెండవ అతిపెద్ద IT కంపెనీ.",mr:"Infosys भारतातील दुसरी सर्वात मोठी IT कंपनी आहे.",ta:"Infosys இந்தியாவின் இரண்டாவது பெரிய IT நிறுவனம்.",gu:"Infosys ભારતની બીજી સૌથી મોટી IT કંપની છે.",kn:"Infosys ಭಾರತದ ಎರಡನೇ ಅತಿದೊಡ್ಡ IT ಕಂಪನಿ.",ml:"Infosys ഇന്ത്യയിലെ രണ്ടാമത്തെ വലിയ IT കമ്പനി.",pa:"Infosys ਭਾਰਤ ਦੀ ਦੂਜੀ ਸਭ ਤੋਂ ਵੱਡੀ IT ਕੰਪਨੀ ਹੈ।"}},
+  {id:'ASIANPAINT',nm:'Asian Paints',sec:'fmcg',sl:'Consumer · NSE: ASIANPAINT',pr:2490,ch:-22,pct:-.88,logo:'AP',lb:'#FFF3E0',lt:'#BF360C',mc:'₹2,38,000 Cr',pe:'50.2x',yr:'-8.3%',yrc:false,div:'₹22/share',
+    desc:{en:"Asian Paints colors more than half the walls in India — a dominant brand with massive reach.",hi:"Asian Paints भारत की आधे से ज़्यादा दीवारों को रंग देती है।",bn:"Asian Paints ভারতের অর্ধেকেরও বেশি দেয়াল রঙ করে।",te:"Asian Paints భారతదేశంలో సగానికి పైగా గోడలను రంగు వేస్తుంది.",mr:"Asian Paints भारतातील निम्म्याहून अधिक भिंती रंगवते.",ta:"Asian Paints இந்தியாவில் பாதிக்கும் மேற்பட்ட சுவர்களை வர்ணிக்கிறது.",gu:"Asian Paints ભારતના અડધાથી વધુ દિવાલો રંગ કરે છે.",kn:"Asian Paints ಭಾರತದ ಅರ್ಧಕ್ಕಿಂತ ಹೆಚ್ಚು ಗೋಡೆಗಳಿಗೆ ಬಣ್ಣ ಬಳಿಯುತ್ತದೆ.",ml:"Asian Paints ഇന്ത്യയിലെ പകുതിയിലധികം ഭിത്തികൾ ചായം പൂശുന്നു.",pa:"Asian Paints ਭਾਰਤ ਦੀਆਂ ਅੱਧੀਆਂ ਤੋਂ ਵੱਧ ਕੰਧਾਂ ਨੂੰ ਰੰਗਦੀ ਹੈ।"}},
 ];
 
-let currentStockId = 'MRF';
-let chartData = {};
+// ── TRANSLATIONS ─────────────────────────────────────────
+const T={
+  en:{pv_label:"Total Portfolio Value",pv_gain:"+₹647.50 (+8.5%)",pv_invested:"Invested: ₹7,600",today_gain:"Today",holdings:"Holdings",spare_saved:"Spare Change",nudge_title:"₹47 spare change ready to invest",nudge_sub:"From 6 UPI transactions this week",invest_now:"Invest Now",breakdown:"Breakdown",frac_invest:"Fractional Investing",frac_sub:"Your stock picks · 3 holdings",spare_invest:"Spare Change",spare_sub:"Auto round-ups · 48 transactions",holdings_title:"Holdings",add_stock:"+ Add Stock",ask_robo:"🤖 Ask Robo",your_savings:"Your Total Savings",earned_extra:"You earned ₹647 extra!",invested_info:"You put in ₹7,600 · it is now worth more 🎉",profit_620:"+₹620 profit ✅",profit_28:"+₹28 profit ✅",find_stock:"Find Stock",any_company:"Any company",get_suggest:"Suggestions",how_works:"How It Works",simple_guide:"Simple guide",mrf_desc:"Makes tyres for cars & bikes 🚗",page_desc:"Makes Jockey clothes 👕",honaut_desc:"Makes factory machines 🏭",earned_39:"+₹39 earned ✅",earned_38:"+₹38 earned ✅",wait_bit:"-₹13 · wait a bit ⏳",discover_title:"Discover Stocks",discover_sub:"Invest any amount from ₹10 — you own a fraction",search_ph:"Search by name or what they make…",all:"All",tech:"💻 Tech",consumer:"🛒 Consumer",finance:"🏦 Finance",auto:"🚗 Auto",robo_title:"🤖 Robo Advisor",robo_sub:"Tell me your risk comfort — I'll suggest the best baskets for you.",risk_label:"How okay are you if your money dips temporarily?",risk_explain:"Higher risk = bigger possible gains, but more ups and downs. Lower risk = slower but steadier.",safe:"Safe",safe_desc:"Slow, steady growth",balanced:"Balanced",bal_desc:"Mix of safety & growth",growth:"Growth",grow_desc:"More ups/downs, bigger gains",baskets_label:"Recommended Baskets",india_finest:"India's Finest",india_finest_stocks:"MRF, Asian Paints, Nestlé, Titan, Bajaj Finance",low_risk:"Low Risk",one_year:"1 year",div_champs:"Dividend Champions",div_desc:"Companies that pay you just for holding shares",vlow_risk:"Very Low Risk",med_risk:"Medium Risk",tech_india:"Tech India",build_portfolio:"🤖 Build My Custom Portfolio",sc_title:"🪙 Spare Change Investing",sc_sub:"Every UPI payment gets rounded up. The extra is invested automatically.",sc_invested:"Spare Invested",sc_returns:"Returns",sc_txns:"Round-Ups",sc_breakdown:"Fractional vs Spare Change",sc_tip:"💡 At this pace, spare change will auto-add ~₹900/month to your portfolio without you doing anything.",sc_settings:"Settings",roundup_toggle:"Round-Up Investing",roundup_sub:"Auto-invest from every UPI payment",double_toggle:"2× Multiplier",double_sub:"Double your spare change amount",invest_into:"Invest spare change into:",top_holding:"My top holding",recent_roundups:"Recent Round-Ups",today_time:"Today, 9:14 AM",yesterday:"Yesterday",back:"Back",what_they_do:"🤔 What do they do?",price_history:"Price History",market_cap:"Market Cap",pe_ratio:"P/E Ratio",yr1_return:"1-Year Return",dividend:"Dividend",invest_in:"Invest in",enter_amount:"Enter Amount (₹)",you_pay:"You pay",fraction:"Fraction",fee:"Fee (0.25%)",invest_now_btn:"Invest Now →",home:"Home",discover:"Discover",robo:"Robo",spare:"Spare",auto_invest:"Auto-invest"},
+  hi:{pv_label:"कुल पोर्टफोलियो मूल्य",pv_gain:"+₹647.50 (+8.5%)",pv_invested:"निवेश: ₹7,600",today_gain:"आज",holdings:"होल्डिंग्स",spare_saved:"स्पेयर चेंज",nudge_title:"₹47 स्पेयर चेंज निवेश के लिए तैयार",nudge_sub:"इस हफ्ते 6 UPI लेनदेन से",invest_now:"अभी निवेश करें",breakdown:"विवरण",frac_invest:"फ्रैक्शनल निवेश",frac_sub:"आपके शेयर · 3 होल्डिंग्स",spare_invest:"स्पेयर चेंज",spare_sub:"ऑटो राउंड-अप · 48 लेनदेन",holdings_title:"होल्डिंग्स",add_stock:"+ शेयर जोड़ें",ask_robo:"🤖 रोबो से पूछें",your_savings:"आपकी कुल बचत",earned_extra:"आपने ₹647 कमाए!",invested_info:"आपने ₹7,600 लगाए · अब यह ज़्यादा है 🎉",profit_620:"+₹620 फायदा ✅",profit_28:"+₹28 फायदा ✅",find_stock:"शेयर खोजें",any_company:"कोई भी कंपनी",get_suggest:"सुझाव",how_works:"कैसे काम करता है",simple_guide:"आसान गाइड",mrf_desc:"गाड़ियों और बाइक के टायर 🚗",page_desc:"Jockey कपड़े बनाती है 👕",honaut_desc:"फैक्ट्री मशीनें 🏭",earned_39:"+₹39 कमाया ✅",earned_38:"+₹38 कमाया ✅",wait_bit:"-₹13 · थोड़ा इंतज़ार करें ⏳",discover_title:"शेयर खोजें",discover_sub:"₹10 से निवेश करें — आपको एक हिस्सा मिलेगा",search_ph:"नाम या काम से खोजें…",all:"सभी",tech:"💻 टेक",consumer:"🛒 उपभोक्ता",finance:"🏦 फाइनेंस",auto:"🚗 ऑटो",robo_title:"🤖 रोबो सलाहकार",robo_sub:"बताइए कितना जोखिम लेना चाहते हैं — मैं सबसे अच्छे बास्केट सुझाऊंगा।",risk_label:"अगर पैसा थोड़ा कम हो तो कितना ठीक है?",risk_explain:"ज़्यादा जोखिम = ज़्यादा कमाई की संभावना, लेकिन उतार-चढ़ाव भी। कम जोखिम = धीरे लेकिन स्थिर।",safe:"सुरक्षित",safe_desc:"धीरे-धीरे बढ़ना",balanced:"मध्यम",bal_desc:"सुरक्षा और बढ़त का मिश्रण",growth:"ज़्यादा बढ़त",grow_desc:"उतार-चढ़ाव, ज़्यादा कमाई",baskets_label:"सुझाए गए बास्केट",india_finest:"भारत की सर्वश्रेष्ठ",india_finest_stocks:"MRF, Asian Paints, Nestlé, Titan, Bajaj Finance",low_risk:"कम जोखिम",one_year:"1 साल",div_champs:"डिविडेंड चैंपियन",div_desc:"जो कंपनियाँ शेयर रखने पर पैसे देती हैं",vlow_risk:"बहुत कम जोखिम",med_risk:"मध्यम जोखिम",tech_india:"टेक इंडिया",build_portfolio:"🤖 मेरा पोर्टफोलियो बनाएं",sc_title:"🪙 स्पेयर चेंज निवेश",sc_sub:"हर UPI पेमेंट गोल होती है। बची राशि अपने आप निवेश होती है।",sc_invested:"स्पेयर निवेश",sc_returns:"कमाई",sc_txns:"राउंड-अप",sc_breakdown:"फ्रैक्शनल बनाम स्पेयर चेंज",sc_tip:"💡 इसी रफ्तार से स्पेयर चेंज हर महीने ~₹900 अपने आप जोड़ेगा।",sc_settings:"सेटिंग",roundup_toggle:"राउंड-अप निवेश",roundup_sub:"हर UPI पेमेंट से अपने आप निवेश",double_toggle:"2× मल्टीप्लायर",double_sub:"राशि दोगुनी करें",invest_into:"स्पेयर चेंज किसमें लगाएं:",top_holding:"मेरी टॉप होल्डिंग",recent_roundups:"हाल के राउंड-अप",today_time:"आज, 9:14 AM",yesterday:"कल",back:"वापस",what_they_do:"🤔 यह कंपनी क्या करती है?",price_history:"मूल्य इतिहास",market_cap:"बाज़ार मूल्य",pe_ratio:"P/E अनुपात",yr1_return:"1 साल की कमाई",dividend:"डिविडेंड",invest_in:"निवेश करें",enter_amount:"राशि डालें (₹)",you_pay:"आप देंगे",fraction:"हिस्सा",fee:"शुल्क (0.25%)",invest_now_btn:"अभी निवेश करें →",home:"होम",discover:"खोजें",robo:"रोबो",spare:"स्पेयर",auto_invest:"अपने आप"},
+};
+// For all other languages, fall back to English for UI strings but use stock desc in that language
+['bn','te','mr','ta','gu','kn','ml','pa'].forEach(l=>{T[l]={...T.en};});
+// Language-specific UI overrides (key phrases only)
+T.mr.pv_label="एकूण पोर्टफोलिओ मूल्य";T.mr.invest_now="आता गुंतवणूक करा";T.mr.add_stock="+ शेअर जोडा";T.mr.your_savings="आपची एकूण बचत";T.mr.what_they_do="🤔 ही कंपनी काय करते?";T.mr.back="मागे";
+T.ta.pv_label="மொத்த போர்ட்ஃபோலியோ மதிப்பு";T.ta.invest_now="இப்போது முதலீடு";T.ta.add_stock="+ பங்கு சேர்";T.ta.your_savings="உங்கள் மொத்த சேமிப்பு";T.ta.what_they_do="🤔 இந்த நிறுவனம் என்ன செய்கிறது?";T.ta.back="பின்";
+T.te.pv_label="మొత్తం పోర్ట్‌ఫోలియో విలువ";T.te.invest_now="ఇప్పుడు పెట్టుబడి పెట్టండి";T.te.your_savings="మీ మొత్తం పొదుపు";T.te.what_they_do:"🤔 ఈ కంపెనీ ఏమి చేస్తుంది?";T.te.back="వెనుకకు";
+T.bn.pv_label="মোট পোর্টফোলিও মূল্য";T.bn.invest_now="এখন বিনিয়োগ করুন";T.bn.your_savings="আপনার মোট সঞ্চয়";T.bn.back="পিছনে";
+T.gu.pv_label="કુલ પોર્ટફોલિયો મૂલ્ય";T.gu.invest_now="હવે રોકાણ કરો";T.gu.your_savings="તમારી કુલ બચત";T.gu.back="પાછળ";
+T.kn.pv_label="ಒಟ್ಟು ಪೋರ್ಟ್‌ಫೋಲಿಯೊ ಮೌಲ್ಯ";T.kn.invest_now="ಈಗ ಹೂಡಿಕೆ ಮಾಡಿ";T.kn.your_savings="ನಿಮ್ಮ ಒಟ್ಟು ಉಳಿತಾಯ";T.kn.back="ಹಿಂದೆ";
+T.ml.pv_label="മൊത്തം പോർട്ട്ഫോളിയോ മൂല്യം";T.ml.invest_now="ഇപ്പോൾ നിക്ഷേപിക്കുക";T.ml.your_savings="നിങ്ങളുടെ മൊത്തം സമ്പാദ്യം";T.ml.back="തിരിച്ച്";
+T.pa.pv_label="ਕੁੱਲ ਪੋਰਟਫੋਲੀਓ ਮੁੱਲ";T.pa.invest_now="ਹੁਣ ਨਿਵੇਸ਼ ਕਰੋ";T.pa.your_savings="ਤੁਹਾਡੀ ਕੁੱਲ ਬੱਚਤ";T.pa.back="ਵਾਪਸ";
 
-// Generate chart data
-function genChartData(basePrice, periods) {
-  const data = [];
-  let p = basePrice * 0.88;
-  for (let i=0; i<periods; i++) {
-    p = p * (1 + (Math.random()-0.46)*0.03);
-    data.push(Math.round(p));
-  }
-  data.push(basePrice);
-  return data;
+// ── STATE ────────────────────────────────────────────────
+let mode='pro',lang='en',curStock='MRF',af='all',as2='';
+let chartData={};
+STOCKS.forEach(s=>{chartData[s.id]={};['1W','1M','3M','1Y'].forEach(p=>{const n=p==='1W'?7:p==='1M'?30:p==='3M'?90:52;const d=[];let v=s.pr*.87;for(let i=0;i<n;i++){v*=(1+(Math.random()-.455)*.028);d.push(Math.round(v));}d.push(s.pr);chartData[s.id][p]=d;});});
+
+// ── ONBOARD & MODE ───────────────────────────────────────
+function setMode(m){
+  mode=m;
+  document.getElementById('ob').style.display='none';
+  document.body.setAttribute('data-mode',m);
+  document.getElementById('mp').classList.toggle('active',m==='pro');
+  document.getElementById('ms').classList.toggle('active',m==='saral');
+  document.getElementById('pro-home').style.display=m==='pro'?'block':'none';
+  document.getElementById('saral-home').style.display=m==='saral'?'block':'none';
+  const hpage=document.getElementById('page-home');
+  hpage.className=`page active ${m}-mode`;
+  document.getElementById('ticker').style.display=m==='pro'?'flex':'none';
+  if(m==='saral')showPopup('welcome');
+  applyLang();
 }
 
-STOCKS.forEach(s => {
-  chartData[s.id] = {
-    '1W': genChartData(s.price, 7),
-    '1M': genChartData(s.price, 30),
-    '3M': genChartData(s.price, 90),
-    '1Y': genChartData(s.price, 52),
-  };
-});
+// ── LANGUAGE ─────────────────────────────────────────────
+function toggleLangDd(){document.getElementById('lang-dd').classList.toggle('open');}
+document.addEventListener('click',e=>{if(!e.target.closest('.lang-wrap'))document.getElementById('lang-dd').classList.remove('open');});
 
-// Page switching
-function showPage(id) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page-'+id).classList.add('active');
-  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-  const tabs = {'home':0,'discover':1,'robo':2,'sparechange':3};
-  const allTabs = document.querySelectorAll('.nav-tab');
-  if (tabs[id] !== undefined) allTabs[tabs[id]].classList.add('active');
-  document.querySelectorAll('.bnav-item').forEach((b,i) => b.classList.toggle('active', i === tabs[id]));
+function setLang(l,flag,short,name){
+  lang=l;
+  document.getElementById('lb-flag').textContent=flag;
+  document.getElementById('lb-name').textContent=short;
+  document.querySelectorAll('.lang-opt').forEach(o=>o.classList.toggle('active',o.querySelector('.lang-en')?.textContent===name));
+  document.getElementById('lang-dd').classList.remove('open');
+  applyLang();
+}
+
+function t(k){return(T[lang]&&T[lang][k])||T.en[k]||k;}
+
+function applyLang(){
+  document.querySelectorAll('[data-k]').forEach(el=>{
+    const k=el.dataset.k;
+    if(k==='search_ph'){el.placeholder=t(k);return;}
+    el.textContent=t(k);
+  });
+  buildGrid();
+  // Update stock detail if open
+  if(document.getElementById('page-stock').classList.contains('active'))showStock(curStock,true);
+}
+
+// ── PAGES ────────────────────────────────────────────────
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const pg=document.getElementById('page-'+id);
+  if(id==='home'){pg.className=`page active ${mode}-mode`;}else{pg.classList.add('active');}
+  document.querySelectorAll('.ntab').forEach((b,i)=>b.classList.toggle('active',['home','discover','robo','sparechange'][i]===id));
+  document.querySelectorAll('.bn-item').forEach((b,i)=>b.classList.toggle('active',['home','discover','robo','sparechange'][i]===id));
   window.scrollTo(0,0);
 }
 
-// Stock grid
-function buildStockGrid(filter='all', search='') {
-  const grid = document.getElementById('stock-grid');
-  const filtered = STOCKS.filter(s => {
-    const matchFilter = filter === 'all' || s.sector === filter;
-    const matchSearch = !search || s.name.toLowerCase().includes(search.toLowerCase()) || s.desc.toLowerCase().includes(search.toLowerCase());
-    return matchFilter && matchSearch;
-  });
-  grid.innerHTML = filtered.map(s => `
-    <div class="stock-card" onclick="showStock('${s.id}')">
-      <div class="stock-card-top">
-        <div class="stock-card-logo" style="background:${s.logoColor};color:${s.logoText}">${s.logo}</div>
-        <div>
-          <div class="stock-card-name">${s.name}</div>
-          <div class="stock-card-sector">${s.sectorLabel}</div>
-        </div>
-        <div style="margin-left:auto">
-          <span class="tag ${s.changePct >= 0 ? 'tag-green' : 'tag-red'}">${s.changePct >= 0 ? '▲' : '▼'} ${Math.abs(s.changePct).toFixed(2)}%</span>
-        </div>
-      </div>
-      <div class="stock-card-price">₹${s.price.toLocaleString('en-IN')} <span>per share</span></div>
-      <div class="stock-card-desc">${s.desc.substring(0,80)}…</div>
-      <div class="sparkline">${drawSparkline(s.id)}</div>
-      <div class="stock-card-bottom">
-        <span class="mini-from">Invest from ₹10</span>
-        <span class="tag ${s.yr1c === 'green' ? 'tag-green' : 'tag-red'}">${s.yr1} (1yr)</span>
-      </div>
+// ── STOCK GRID ───────────────────────────────────────────
+function buildGrid(f,s){
+  if(f!==undefined)af=f;if(s!==undefined)as2=s;
+  const g=document.getElementById('sgrid');if(!g)return;
+  const items=STOCKS.filter(x=>(af==='all'||x.sec===af)&&(!as2||x.nm.toLowerCase().includes(as2.toLowerCase())));
+  g.innerHTML=items.map(s=>`<div class="scard" onclick="showStock('${s.id}')">
+    <div class="sc-top">
+      <div class="sc-logo" style="background:${s.lb};color:${s.lt}">${s.logo}</div>
+      <div><div class="sc-nm">${s.nm}</div><div class="sc-sec">${s.sl.split('·')[0].trim()}</div></div>
+      <div style="margin-left:auto"><span class="${s.pct>=0?'tag-g':'tag-r'}">${s.pct>=0?'▲':'▼'}${Math.abs(s.pct).toFixed(2)}%</span></div>
     </div>
-  `).join('');
+    <div class="sc-pr">₹${s.pr.toLocaleString('en-IN')}</div>
+    <div class="sc-ds">${(s.desc[lang]||s.desc.en).substring(0,80)}…</div>
+    <div class="sc-bt"><span class="sc-fr">${t('invest_now')} from ₹10</span><span class="${s.yrc?'tag-g':'tag-r'}">${s.yr} 1yr</span></div>
+  </div>`).join('');
 }
+function setFilter(el,f){document.querySelectorAll('.frow .chip').forEach(c=>c.classList.remove('active'));el.classList.add('active');buildGrid(f,as2);}
+function filterStocks(v){buildGrid(af,v);}
 
-function drawSparkline(id) {
-  const data = chartData[id]['1M'];
-  const w = 220, h = 40;
-  const min = Math.min(...data), max = Math.max(...data);
-  const pts = data.map((v,i) => {
-    const x = (i/(data.length-1))*w;
-    const y = h - ((v-min)/(max-min||1))*h;
-    return `${x},${y}`;
-  }).join(' ');
-  const isUp = data[data.length-1] >= data[0];
-  const color = isUp ? '#22C55E' : '#EF4444';
-  return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><polyline points="${pts}" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-}
-
-let activeFilter = 'all', activeSearch = '';
-function setFilter(el, filter) {
-  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-  el.classList.add('active');
-  activeFilter = filter;
-  buildStockGrid(filter, activeSearch);
-}
-function filterStocks(val) {
-  activeSearch = val;
-  buildStockGrid(activeFilter, val);
-}
-
-// Stock detail
-function showStock(id) {
-  const s = STOCKS.find(x => x.id === id);
-  if (!s) return;
-  currentStockId = id;
-
-  document.getElementById('sdh-logo').textContent = s.logo;
-  document.getElementById('sdh-logo').style.background = s.logoColor;
-  document.getElementById('sdh-logo').style.color = s.logoText;
-  document.getElementById('sdh-name').textContent = s.name;
-  document.getElementById('sdh-sector').textContent = `${s.sectorLabel} · ${s.symbol}`;
-  document.getElementById('sdh-price').textContent = '₹' + s.price.toLocaleString('en-IN');
-  document.getElementById('sdh-change').textContent = `${s.changePct >= 0 ? '📈' : '📉'} ${s.changePct >= 0 ? '+' : ''}₹${Math.abs(s.change).toLocaleString('en-IN')} (${s.changePct >= 0 ? '+' : ''}${s.changePct}%) today`;
-  document.getElementById('sdh-desc-text').textContent = s.desc;
-  document.getElementById('sdh-mcap').textContent = s.mcap;
-  document.getElementById('sdh-pe').textContent = s.pe;
-  document.getElementById('sdh-1yr').textContent = s.yr1;
-  document.getElementById('sdh-1yr').style.color = s.yr1c === 'green' ? 'var(--green)' : 'var(--red)';
-  document.getElementById('sdh-div').textContent = s.div;
-  document.getElementById('invest-name').textContent = s.name;
-  document.getElementById('btn-stock').textContent = s.name.split(' ')[0];
-
-  const inp = document.getElementById('invest-amount');
-  inp.value = 500;
-  updateFraction();
-  drawChart('1W');
-
-  document.querySelectorAll('.chart-tab').forEach((t,i) => t.classList.toggle('active', i===0));
-  showPage('stock');
-}
-
-// Chart drawing
-function drawChart(period) {
-  const canvas = document.getElementById('stockChart');
-  const ctx = canvas.getContext('2d');
-  const dpr = window.devicePixelRatio || 1;
-  canvas.width = canvas.offsetWidth * dpr;
-  canvas.height = 180 * dpr;
-  ctx.scale(dpr, dpr);
-  const w = canvas.offsetWidth, h = 180;
-
-  const data = chartData[currentStockId][period];
-  const min = Math.min(...data), max = Math.max(...data);
-  const pad = 20;
-  const isUp = data[data.length-1] >= data[0];
-  const color = isUp ? '#22C55E' : '#EF4444';
-
-  ctx.clearRect(0,0,w,h);
-
-  // Grid lines
-  ctx.strokeStyle = '#F1F5F9'; ctx.lineWidth = 1;
-  for (let i=0;i<4;i++) { const y = pad + (h-pad*2)/3*i; ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(w,y); ctx.stroke(); }
-
-  // Gradient fill
-  const grad = ctx.createLinearGradient(0,0,0,h);
-  grad.addColorStop(0, isUp ? 'rgba(34,197,94,0.2)' : 'rgba(239,68,68,0.2)');
-  grad.addColorStop(1, 'rgba(255,255,255,0)');
-
-  const pts = data.map((v,i) => ({
-    x: pad + (i/(data.length-1))*(w-pad*2),
-    y: pad + (h-pad*2) - ((v-min)/(max-min||1))*(h-pad*2)
-  }));
-
-  ctx.beginPath();
-  ctx.moveTo(pts[0].x, h);
-  pts.forEach(p => ctx.lineTo(p.x, p.y));
-  ctx.lineTo(pts[pts.length-1].x, h);
-  ctx.closePath();
-  ctx.fillStyle = grad;
-  ctx.fill();
-
-  ctx.beginPath();
-  pts.forEach((p,i) => i===0 ? ctx.moveTo(p.x,p.y) : ctx.lineTo(p.x,p.y));
-  ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
-  ctx.stroke();
-
-  // Last point dot
-  const last = pts[pts.length-1];
-  ctx.beginPath(); ctx.arc(last.x,last.y,5,0,Math.PI*2);
-  ctx.fillStyle = color; ctx.fill();
-  ctx.beginPath(); ctx.arc(last.x,last.y,8,0,Math.PI*2);
-  ctx.fillStyle = isUp ? 'rgba(34,197,94,0.2)' : 'rgba(239,68,68,0.2)'; ctx.fill();
-
-  // Stats
-  const ret = ((data[data.length-1]-data[0])/data[0]*100).toFixed(1);
-  document.getElementById('chart-low').textContent = 'Low: ₹'+Math.min(...data).toLocaleString('en-IN');
-  document.getElementById('chart-high').textContent = 'High: ₹'+Math.max(...data).toLocaleString('en-IN');
-  document.getElementById('chart-ret').textContent = `Return: ${ret >= 0 ? '+' : ''}${ret}%`;
-  document.getElementById('chart-ret').style.color = ret >= 0 ? 'var(--green)' : 'var(--red)';
-}
-
-function changeChart(el, period) {
-  document.querySelectorAll('.chart-tab').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
-  drawChart(period);
-}
-
-// Invest
-function updateFraction() {
-  const s = STOCKS.find(x => x.id === currentStockId);
-  const amt = parseFloat(document.getElementById('invest-amount').value) || 0;
-  const frac = (amt / s.price).toFixed(6);
-  document.getElementById('frac-display').textContent = `= ${frac} shares of ${s.id}`;
-  document.getElementById('frac-val').textContent = `${frac} shares`;
-  document.getElementById('pay-val').textContent = `₹${amt.toLocaleString('en-IN')}`;
-  document.getElementById('btn-amt').textContent = amt.toLocaleString('en-IN');
-}
-function setAmount(v) {
-  document.getElementById('invest-amount').value = v;
-  updateFraction();
-}
-function placeOrder() {
-  const amt = document.getElementById('invest-amount').value;
-  const s = STOCKS.find(x => x.id === currentStockId);
-  showToast(`✅ Invested ₹${amt} in ${s.name}!`);
-}
-
-// Risk profile
-function selectRisk(el) {
-  document.querySelectorAll('.risk-card').forEach(c => c.classList.remove('selected'));
-  el.classList.add('selected');
-}
-function toggleGoal(el) { el.classList.toggle('active'); }
-
-// Spare change toggle
-function toggleSwitch(el) { el.classList.toggle('on'); }
-
-// Toast
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  document.getElementById('toast-msg').textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 3000);
-}
-
-// Init
-buildStockGrid();
-
-// Resize chart on window resize
-window.addEventListener('resize', () => {
-  if (document.getElementById('page-stock').classList.contains('active')) {
-    const activePeriod = document.querySelector('.chart-tab.active')?.textContent || '1W';
-    drawChart(activePeriod);
+// ── STOCK DETAIL ─────────────────────────────────────────
+function showStock(id,noPageSwitch){
+  const s=STOCKS.find(x=>x.id===id);if(!s)return;curStock=id;
+  document.getElementById('sdh-logo').textContent=s.logo;
+  document.getElementById('sdh-logo').style.background=s.lb;
+  document.getElementById('sdh-logo').style.color=s.lt;
+  document.getElementById('sdh-name').textContent=s.nm;
+  document.getElementById('sdh-sector').textContent=s.sl;
+  document.getElementById('sdh-pr').textContent='₹'+s.pr.toLocaleString('en-IN');
+  const ce=document.getElementById('sdh-ch');
+  ce.textContent=`${s.pct>=0?'📈':'📉'} ${s.pct>=0?'+':''}₹${Math.abs(s.ch).toLocaleString('en-IN')} (${s.pct>=0?'+':''}${s.pct}%)`;
+  ce.style.background=s.pct>=0?'var(--gnd)':'var(--rdd)';ce.style.color=s.pct>=0?'var(--gn)':'var(--rd)';
+  document.getElementById('sdh-desc').textContent=s.desc[lang]||s.desc.en;
+  document.getElementById('sdh-mc').textContent=s.mc;document.getElementById('sdh-pe').textContent=s.pe;
+  const ye=document.getElementById('sdh-yr');ye.textContent=s.yr;ye.style.color=s.yrc?'var(--gn)':'var(--rd)';
+  document.getElementById('sdh-div').textContent=s.div;document.getElementById('inv-nm').textContent=s.nm;
+  document.getElementById('inv-amt').value=500;updFrac();
+  document.querySelectorAll('.ctab').forEach((t,i)=>t.classList.toggle('active',i===0));
+  if(!noPageSwitch){
+    if(mode==='saral')showPopup('invest_help');
+    showPage('stock');
   }
-});
+  setTimeout(()=>drawChart('1W'),50);
+}
+
+// ── CHART ────────────────────────────────────────────────
+function drawChart(p){
+  const canvas=document.getElementById('stockChart');if(!canvas)return;
+  const ctx=canvas.getContext('2d');const dpr=window.devicePixelRatio||1;
+  canvas.width=canvas.offsetWidth*dpr;canvas.height=160*dpr;ctx.scale(dpr,dpr);
+  const w=canvas.offsetWidth,h=160,data=chartData[curStock][p];
+  const mn=Math.min(...data),mx=Math.max(...data),pad=16;
+  const isUp=data[data.length-1]>=data[0];const col=isUp?'#0ECB81':'#F6465D';
+  ctx.clearRect(0,0,w,h);
+  ctx.strokeStyle='rgba(255,255,255,0.04)';ctx.lineWidth=1;
+  for(let i=0;i<3;i++){const y=pad+(h-pad*2)/2*i;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke();}
+  const pts=data.map((v,i)=>({x:pad+(i/(data.length-1))*(w-pad*2),y:pad+(h-pad*2)-((v-mn)/(mx-mn||1))*(h-pad*2)}));
+  const gr=ctx.createLinearGradient(0,0,0,h);
+  gr.addColorStop(0,isUp?'rgba(14,203,129,.22)':'rgba(246,70,93,.22)');gr.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.beginPath();ctx.moveTo(pts[0].x,h);pts.forEach(p=>ctx.lineTo(p.x,p.y));
+  ctx.lineTo(pts[pts.length-1].x,h);ctx.closePath();ctx.fillStyle=gr;ctx.fill();
+  ctx.beginPath();pts.forEach((p,i)=>i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y));
+  ctx.strokeStyle=col;ctx.lineWidth=2;ctx.lineJoin='round';ctx.lineCap='round';ctx.stroke();
+  const lp=pts[pts.length-1];
+  ctx.beginPath();ctx.arc(lp.x,lp.y,4,0,Math.PI*2);ctx.fillStyle=col;ctx.fill();
+  ctx.beginPath();ctx.arc(lp.x,lp.y,8,0,Math.PI*2);ctx.fillStyle=isUp?'rgba(14,203,129,.2)':'rgba(246,70,93,.2)';ctx.fill();
+  const ret=((data[data.length-1]-data[0])/data[0]*100).toFixed(1);
+  document.getElementById('ch-low').textContent='Low: ₹'+mn.toLocaleString('en-IN');
+  document.getElementById('ch-high').textContent='High: ₹'+mx.toLocaleString('en-IN');
+  const re=document.getElementById('ch-ret');
+  re.textContent=`${ret>=0?'+':''}${ret}%`;re.style.color=ret>=0?'var(--gn)':'var(--rd)';
+}
+function changeChart(el,p){document.querySelectorAll('.ctab').forEach(t=>t.classList.remove('active'));el.classList.add('active');drawChart(p);}
+window.addEventListener('resize',()=>{if(document.getElementById('page-stock').classList.contains('active'))drawChart(document.querySelector('.ctab.active')?.textContent||'1W');});
+
+// ── INVEST ───────────────────────────────────────────────
+function updFrac(){
+  const s=STOCKS.find(x=>x.id===curStock);const amt=parseFloat(document.getElementById('inv-amt').value)||0;
+  const frac=(amt/s.pr).toFixed(6);
+  document.getElementById('frac-d').textContent=`= ${frac} shares`;
+  document.getElementById('frac-v').textContent=`${frac} shares`;
+  document.getElementById('pay-v').textContent=`₹${amt.toLocaleString('en-IN')}`;
+}
+function setAmt(v){document.getElementById('inv-amt').value=v;updFrac();}
+function placeOrder(){const amt=document.getElementById('inv-amt').value;const s=STOCKS.find(x=>x.id===curStock);showToast(`✅ ${t('invest_now')}! ₹${amt} → ${s.nm}`);}
+
+// ── ROBO ─────────────────────────────────────────────────
+function selRisk(el){document.querySelectorAll('.ropt').forEach(r=>r.classList.remove('sel'));el.classList.add('sel');}
+
+// ── POPUPS ───────────────────────────────────────────────
+const POPUP_DEFS={
+  welcome:{
+    ic:'🙏',
+    t:{en:'Welcome to Saral Mode!',hi:'सरल मोड में स्वागत!',mr:'सरल मोड मध्ये स्वागत!',ta:'எளிய முறையில் வரவேற்கிறோம்!',te:'సరళ మోడ్‌కు స్వాగతం!',bn:'সহজ মোডে স্বাগতম!',gu:'સરળ મોડમાં સ્વાગત છે!',kn:'ಸರಳ ಮೋಡ್‌ಗೆ ಸ್ವಾಗತ!',ml:'ലളിത മോഡിലേക്ക് സ്വാഗതം!',pa:'ਸਰਲ ਮੋਡ ਵਿੱਚ ਜੀ ਆਇਆਂ!'},
+    b:{en:"We've made everything simple for you. Switch to Pro Mode anytime from the top bar.",hi:'हमने सब कुछ आसान बना दिया है। ऊपर से कभी भी Pro Mode में जा सकते हैं।'},
+    steps:[
+      {en:'📊 See your total money and how much you earned',hi:'📊 अपना कुल पैसा और कमाई देखें'},
+      {en:'🔍 Search any company — we explain what they do',hi:'🔍 कोई भी कंपनी खोजें — हम आसान भाषा में समझाते हैं'},
+      {en:'🪙 Spare change saves automatically from daily UPI',hi:'🪙 स्पेयर चेंज रोज़ UPI से अपने आप बचत होती है'},
+      {en:'🤖 Robo Advisor suggests the best basket for you',hi:'🤖 रोबो सलाहकार आपके लिए बेस्ट बास्केट सुझाएगा'},
+    ]
+  },
+  howto:{
+    ic:'💡',
+    t:{en:'How Does Proscitos Work?',hi:'Proscitos कैसे काम करता है?'},
+    b:{en:'Investing used to need lakhs. Not anymore.',hi:'पहले लाखों रुपए चाहिए होते थे। अब नहीं।'},
+    steps:[
+      {en:'🏢 Pick any company — MRF, TCS, Nestlé, anyone!',hi:'🏢 कोई भी कंपनी चुनें — MRF, TCS, Nestlé, कोई भी!'},
+      {en:'💰 Enter any amount — ₹10, ₹500, whatever you want',hi:'💰 कोई भी राशि डालें — ₹10, ₹500, जो चाहें'},
+      {en:'📈 We buy a tiny fraction of that share for you',hi:'📈 हम उस शेयर का एक छोटा हिस्सा आपके लिए खरीदते हैं'},
+      {en:'💸 If the share price goes up — your money goes up too!',hi:'💸 शेयर का दाम बढ़ा — आपका पैसा भी बढ़ेगा!'},
+    ]
+  },
+  invest_help:{
+    ic:'🛒',
+    t:{en:'How to Buy a Share',hi:'शेयर कैसे खरीदें'},
+    b:{en:"You don't need the full share price. Just type how much you want to invest.",hi:'पूरे शेयर का दाम नहीं चाहिए। बस बताएं आप कितना लगाना चाहते हैं।'},
+    steps:[
+      {en:'Type any amount — ₹10, ₹500, anything',hi:'कोई भी राशि लिखें — ₹10, ₹500, कुछ भी'},
+      {en:'See how much fraction of the share you\'ll get',hi:'देखें आपको शेयर का कितना हिस्सा मिलेगा'},
+      {en:'Tap Invest Now — money comes from your wallet',hi:'"अभी निवेश करें" दबाएं — पैसा वॉलेट से जाएगा'},
+      {en:'Done! You own a piece of this company 🎉',hi:'हो गया! अब आप इस कंपनी के मालिक हैं 🎉'},
+    ]
+  },
+  spare:{
+    ic:'🪙',
+    t:{en:'Invest ₹47 Spare Change?',hi:'₹47 स्पेयर चेंज निवेश करें?'},
+    b:{en:'You saved ₹47 from 6 round-ups this week. Invest into India\'s Finest basket?',hi:'इस हफ्ते 6 राउंड-अप से ₹47 बचा। India\'s Finest बास्केट में निवेश करें?'},
+    steps:[
+      {en:'☕ Coffee ₹143 → rounded to ₹150 → +₹7',hi:'☕ Coffee ₹143 → ₹150 → +₹7 बचाया'},
+      {en:'🛒 DMart ₹867 → rounded to ₹870 → +₹3',hi:'🛒 DMart ₹867 → ₹870 → +₹3 बचाया'},
+      {en:'🚕 Ola ₹212 → rounded to ₹220 → +₹8',hi:'🚕 Ola ₹212 → ₹220 → +₹8 बचाया'},
+    ],extra:true
+  },
+};
+
+function showPopup(key){
+  const p=POPUP_DEFS[key];if(!p)return;
+  const l=lang;
+  const getStr=(obj)=>obj[l]||obj.en||'';
+  const steps=p.steps.map((s,i)=>`<li><div class="ps-n">${i+1}</div><div class="ps-tx">${getStr(s)}</div></li>`).join('');
+  const extra=p.extra?`<button class="btn btn-p btn-bl" style="margin-top:8px;margin-bottom:6px" onclick="showToast('✅ ₹47 invested!');closePop()">${t('invest_now')} ₹47 ✅</button>`:'';
+  document.getElementById('popup').innerHTML=`
+    <div class="pop-drag"></div>
+    <div class="pop-ic">${p.ic}</div>
+    <div class="pop-t">${getStr(p.t)}</div>
+    <div class="pop-b">${getStr(p.b)}</div>
+    <ul class="pop-steps">${steps}</ul>
+    ${extra}
+    <button class="btn btn-g btn-bl" onclick="closePop()">✓ ${lang==='hi'?'समझ गया':'Got it'}</button>
+  `;
+  document.getElementById('pop-ov').classList.add('open');
+}
+function closePop(e){if(!e||e.target===document.getElementById('pop-ov'))document.getElementById('pop-ov').classList.remove('open');}
+
+// ── TOAST ────────────────────────────────────────────────
+function showToast(msg){
+  const toast=document.getElementById('toast');
+  document.getElementById('toast-msg').textContent=msg;
+  toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),3000);
+}
+
+// ── INIT ─────────────────────────────────────────────────
+buildGrid();
 </script>
 </body>
 </html>
