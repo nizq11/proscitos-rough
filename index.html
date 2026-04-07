@@ -8,31 +8,29 @@
 <style>
 body {
   margin: 0;
-  font-family: Arial;
+  font-family: 'Segoe UI', sans-serif;
   background: #0f172a;
   color: white;
 }
 
-/* NAV */
 .nav {
   display: flex;
   justify-content: space-between;
-  padding: 15px 30px;
+  padding: 16px 30px;
   background: #020617;
 }
 
 .logo {
   font-weight: bold;
-  font-size: 18px;
+  font-size: 20px;
 }
 
-/* buttons */
 .mode-btn {
-  padding: 6px 12px;
-  margin-left: 5px;
+  padding: 6px 14px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  margin-left: 6px;
 }
 
 .active {
@@ -40,19 +38,25 @@ body {
   color: black;
 }
 
-/* layout */
-.page {
-  padding: 40px;
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 30px;
 }
 
 .card {
   background: #020617;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 12px;
   margin-bottom: 20px;
 }
 
-/* saral styling */
+h2 { margin-top: 0; }
+
+.green { color: #22c55e; }
+.red { color: #ef4444; }
+
+/* SARAL MODE */
 [data-mode="saral"] {
   background: #f7f8fa;
   color: black;
@@ -61,12 +65,12 @@ body {
 [data-mode="saral"] .card {
   background: white;
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- NAV -->
 <div class="nav">
   <div class="logo">Proscitos</div>
   <div>
@@ -75,42 +79,47 @@ body {
   </div>
 </div>
 
-<!-- MAIN PAGE -->
-<div id="page-home" class="page">
+<div class="container">
 
-  <!-- PRO VIEW -->
-  <div id="pro-home">
-    <div class="card">
-      <h2>Pro Mode</h2>
-      <p>Detailed analytics, charts, and advanced investing tools.</p>
-    </div>
+<!-- PRO -->
+<div id="pro-home">
 
-    <div class="card">
-      <h3>Portfolio</h3>
-      <p>₹8,247.50</p>
-      <p style="color:lightgreen">+₹647.50 (8.5%)</p>
-    </div>
+  <div class="card">
+    <h2>Portfolio Value</h2>
+    <h1>₹8,247.50</h1>
+    <p class="green">+₹647.50 (+8.5%)</p>
   </div>
 
-  <!-- SARAL VIEW -->
-  <div id="saral-home" style="display:none;">
-    <div class="card">
-      <h2>Saral Mode</h2>
-      <p>Simple investing, easy interface.</p>
-    </div>
-
-    <div class="card">
-      <h3>Your Savings</h3>
-      <p>₹8,247</p>
-      <p style="color:green">You earned ₹647 🎉</p>
-    </div>
+  <div class="card">
+    <h2>Holdings</h2>
+    <p>MRF — ₹780 <span class="green">+5.2%</span></p>
+    <p>Page Industries — ₹600 <span class="green">+6.5%</span></p>
+    <p>Honeywell — ₹720 <span class="red">-1.9%</span></p>
   </div>
+
+</div>
+
+<!-- SARAL -->
+<div id="saral-home" style="display:none;">
+
+  <div class="card">
+    <h2>Your Savings</h2>
+    <h1>₹8,247</h1>
+    <p class="green">You earned ₹647 🎉</p>
+  </div>
+
+  <div class="card">
+    <h3>Simple Breakdown</h3>
+    <p>Stocks: ₹7,288</p>
+    <p>Spare Change: ₹312</p>
+  </div>
+
+</div>
 
 </div>
 
 <script>
 
-// mode switch (guaranteed working)
 function setMode(mode) {
   const pro = document.getElementById("pro-home");
   const saral = document.getElementById("saral-home");
@@ -118,7 +127,6 @@ function setMode(mode) {
   const mp = document.getElementById("mp");
   const ms = document.getElementById("ms");
 
-  // toggle views
   if (mode === "pro") {
     pro.style.display = "block";
     saral.style.display = "none";
@@ -134,14 +142,10 @@ function setMode(mode) {
     mp.classList.remove("active");
   }
 
-  // theme switch
   document.body.setAttribute("data-mode", mode);
 }
 
-// default load
-window.onload = function() {
-  setMode("pro");
-};
+window.onload = () => setMode("pro");
 
 </script>
 
