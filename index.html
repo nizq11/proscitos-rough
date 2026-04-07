@@ -96,21 +96,40 @@ button {
 
 // MODE SWITCH
 function setMode(mode) {
-  console.log("Switching to:", mode);
+  try {
+    console.log("Mode:", mode);
 
-  const pro = document.getElementById("pro-home");
-  const saral = document.getElementById("saral-home");
+    // set theme
+    document.body.setAttribute("data-mode", mode);
 
-  if (mode === "pro") {
-    pro.style.display = "block";
-    saral.style.display = "none";
-  } else {
-    pro.style.display = "none";
-    saral.style.display = "block";
+    // toggle buttons
+    const mp = document.getElementById("mp");
+    const ms = document.getElementById("ms");
+
+    if (mp) mp.classList.toggle("active", mode === "pro");
+    if (ms) ms.classList.toggle("active", mode === "saral");
+
+    // toggle views SAFELY
+    const pro = document.getElementById("pro-home");
+    const saral = document.getElementById("saral-home");
+
+    if (pro) pro.style.display = (mode === "pro") ? "block" : "none";
+    if (saral) saral.style.display = (mode === "saral") ? "block" : "none";
+
+    // page class
+    const page = document.getElementById("page-home");
+    if (page) {
+      page.classList.remove("pro-mode", "saral-mode");
+      page.classList.add(mode + "-mode");
+    }
+
+    // hide onboarding
+    const ob = document.getElementById("ob");
+    if (ob) ob.style.display = "none";
+
+  } catch (e) {
+    console.error("setMode crash:", e);
   }
-
-  document.getElementById("mp").style.background = mode === "pro" ? "#38bdf8" : "";
-  document.getElementById("ms").style.background = mode === "saral" ? "#38bdf8" : "";
 }
 
 // PAGE NAV
